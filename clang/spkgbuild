@@ -1,0 +1,30 @@
+# description	: Collection of modular and reusable compiler and toolchain technologies
+# depends	: llvm
+
+name=clang
+version=15.0.7
+release=1
+source="https://github.com/llvm/llvm-project/releases/download/llvmorg-$version/clang-$version.src.tar.xz"
+
+build() {
+	scratch issintalled xf86-video-amdgpu && \
+	TARGETS="AMDGPU;X86" || TARGETS="X86"
+	
+	cmake -S $name-$version.src -B build -G Ninja \
+	    -D CMAKE_INSTALL_PREFIX=/usr \
+	    -D CMAKE_INSTALL_LIBEXECDIR=/usr/lib/clang \
+	    -D CMAKE_BUILD_TYPE=Release \
+	    -D CMAKE_C_FLAGS_RELEASE="$CFLAGS" \
+	    -D CMAKE_CXX_FLAGS_RELEASE="$CXXFLAGS" \
+	    -D LLVM_ENABLE_RTTI=ON \
+	    -D LLVM_ENABLE_EH=ON \
+	    -D CLANG_BUILD_EXAMPLES=OFF \
+	    -D CLANG_INCLUDE_DOCS=OFF \
+	    -D CLANG_INCLUDE_TESTS=OFF \
+	    -D LIBCLANG_BUILD_STATIC=ON \
+	    -D CLANG_BUILT_STANDALONE=ON \
+	    -D LLVM_TARGETS_TO_BUILD="$TARGETS" \
+	    -Wno-dev
+  cmake --build build
+  DESTDIR=$PKG cmake --install build
+}

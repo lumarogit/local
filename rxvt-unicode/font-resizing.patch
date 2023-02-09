@@ -1,0 +1,13 @@
+--- a/src/main.C
++++ b/src/main.C
+@@ -874,9 +874,8 @@
+ #endif
+     }
+ 
+-  if (parent)
+     {
+-      resize_all_windows (0, 0, 0);
++      resize_all_windows (szHint.width, szHint.height, 1);
+       scr_remap_chars ();
+       scr_touch (true);
+     }

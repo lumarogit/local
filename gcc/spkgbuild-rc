@@ -1,0 +1,64 @@
+# description	: The GNU compiler collection, which includes the C and C++ compilers
+# depends	: libmpc libmpfr libgmp zlib
+
+name=gcc
+version=12.2.0
+release=20220812
+next=12.2.1
+source="$name-RC-$version.tar.xz::https://gcc.gnu.org/pub/gcc/snapshots/$version-RC-$release/$name-$version-RC-$release.tar.xz"
+
+bsdtar() {
+	tar $@
+}
+
+build() {
+	cd $name-$version-RC-$release
+
+	# /lib is 64bit libraries directory
+	sed -e '/m64=/s/lib64/lib/' \
+	    -i.orig gcc/config/i386/t-linux64
+
+	# Do not run fixincludes
+	sed -i 's@\./fixinc\.sh@-c true@' gcc/Makefile.in
+
+	mkdir -v build
+	cd       build
+
+	SED=sed \
+	../configure \
+		--prefix=/usr \
+		--libexecdir=/usr/lib \
+		--disable-bootstrap \
+		--disable-libmpx \
+		--disable-nls \
+		--disable-multilib \
+		--disable-decimal-float \
+		--disable-libatomic \
+		--disable-libgomp \
+		--disable-libquadmath \
+		--disable-libssp \
+		--disable-libvtv \
+		--enable-languages=c,c++ \
+		--enable-threads=posix \
+		--enable-__cxa_atexit \
+		--enable-default-pie \
+		--enable-default-ssp \
+		--with-pkgversion="Venom Linux $version-RC-$release" \
+		--with-system-zlib 
+
+	make
+	make  DESTDIR=$PKG install
+
+	mkdir $PKG/lib
+	ln -sv ../usr/bin/cpp $PKG/lib/cpp
+	ln -sv gcc $PKG/usr/bin/cc
+
+	install -v -dm755 $PKG/usr/lib/bfd-plugins
+	ln -sfv ../../lib/gcc/$(gcc -dumpmachine)/$next/liblto_plugin.so \
+	        $PKG/usr/lib/bfd-plugins/
+
+	mkdir -pv $PKG/usr/share/gdb/auto-load/usr/lib
+	mv -v $PKG/usr/lib/*gdb.py $PKG/usr/share/gdb/auto-load/usr/lib
+
+	rm -r $PKG/usr/share/$name-$next
+}
