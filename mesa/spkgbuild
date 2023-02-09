@@ -9,7 +9,7 @@ source="https://mesa.freedesktop.org/archive/$name-$version.tar.xz
 	0002-iris-Retry-DRM_IOCTL_I915_GEM_EXECBUFFER2-on-ENOMEM.patch
 	0003-Revert-iris-Avoid-abort-if-kernel-can-t-allocate-mem.patch"
 build() {
-	scratch issintalled xf86-video-amdgpu && \
+	scratch isinstalled xf86-video-amdgpu && \
 	OPTS="-Dgallium-va=enabled -Dgallium-drivers=swrast,radeonsi" || \
 	OPTS="-Dgallium-va=disabled -Dgallium-drivers=swrast,crocus"
 

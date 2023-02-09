@@ -9,7 +9,7 @@ https://github.com/llvm/llvm-project/releases/download/llvmorg-$version/cmake-$v
 llvm-config.h"
 
 build() {
-	scratch issintalled xf86-video-amdgpu && \
+	scratch isinstalled xf86-video-amdgpu && \
 	TARGETS="AMDGPU;X86" || TARGETS="X86"
 
 	cp -r $SRC/cmake-$version.src/Modules/* $name-$version.src/cmake/modules/.
