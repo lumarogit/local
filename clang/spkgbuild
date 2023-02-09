@@ -7,7 +7,7 @@ release=1
 source="https://github.com/llvm/llvm-project/releases/download/llvmorg-$version/clang-$version.src.tar.xz"
 
 build() {
-	scratch issintalled xf86-video-amdgpu && \
+	scratch isinstalled xf86-video-amdgpu && \
 	TARGETS="AMDGPU;X86" || TARGETS="X86"
 	
 	cmake -S $name-$version.src -B build -G Ninja \
