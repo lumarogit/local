@@ -15,8 +15,8 @@ build() {
 
 	cd $name-$release
 
-	if [ -f $_portdir/config.h ]; then
-		cp $_portdir/config.h .
+	if [ -f $_portdir/config-$(hostname).h ]; then
+		cp $_portdir/config-$(hostname).h config.h
 	fi
 
 	for p in $_portdir/*.patch $_portdir/*.diff; do
