@@ -2,11 +2,10 @@
 # depends	: bc elfutils openssl yaml
 
 name=linux
-version=6.1.10
+version=6.2.0
 release=1
 source="https://cdn.kernel.org/pub/linux/kernel/v6.x/$name-${version%.0}.tar.xz
-	more-uarches-for-kernel-5.17+.patch
-	config-$(hostname)"
+	config-lenovo config-ryzen"
 NO_STRIP=yes
 
 build() {
