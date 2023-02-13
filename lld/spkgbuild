@@ -9,8 +9,12 @@ source="https://github.com/llvm/llvm-project/releases/download/llvmorg-$version/
 0002-PATCH-lld-Import-compact_unwind_encoding.h-from-libu.patch"
 
 build() {
-	scratch isinstalled xf86-video-amdgpu && \
-	TARGETS="AMDGPU;X86" || TARGETS="X86"
+
+	if scratch isinstalled xf86-video-amdgpu || scratch isinstalled xf86-video-ati; then
+		TARGETS="AMDGPU;X86"
+	else
+		TARGETS="X86"                                                                                                                                         
+	fi
 
 	cd $name-$version.src
 
