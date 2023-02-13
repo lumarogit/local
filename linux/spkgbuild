@@ -3,7 +3,7 @@
 
 name=linux
 version=6.2.0
-release=7
+release=8
 source="https://git.kernel.org/torvalds/t/$name-${version%.*}-rc$release.tar.gz
 	config-$(hostname)"
 NO_STRIP=yes
