@@ -1,0 +1,22 @@
+# description	: GNU Image Manipulation Program
+# depends	: gegl appstream-glib json-glib mypaint-brushes1 gexiv2 poppler-glib glib-networking gtk3 librsvg libgudev
+
+name=gimp99
+version=2.99.14
+release=1
+source="https://download.gimp.org/pub/$name/v${version%.*}/$name-$version.tar.xz"
+
+build() {
+	venom-meson $name-$version build \
+		-Denable-console-bin=false \
+		-Dwin32-debug-console=false \
+		-Dcheck-update=no \
+		-Daa=disabled \
+		-Dalsa=enabled \
+		-Djavascript=false \
+		-Dlua=false \
+		-Dpython=false 
+	meson compile -C build
+	DESTDIR=$PKG meson install -C build
+
+}
