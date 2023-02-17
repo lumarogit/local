@@ -2,10 +2,10 @@
 # depends	: libmpc libmpfr libgmp zlib
 
 name=gcc
-version=12.20221224
+version=12.20230211
 release=1
 next=12.2.1
-source="https://gcc.gnu.org/pub/gcc/snapshots/LATEST-${version%.*}/$name-${version%.*}-${version#*.}.tar.xz
+source="$name-$version.tar.xz::https://gcc.gnu.org/pub/gcc/snapshots/LATEST-${version%.*}/$name-${version%.*}-${version#*.}.tar.xz
 	c89 c99"
 
 bsdtar() {
@@ -36,10 +36,11 @@ build() {
 		--disable-decimal-float \
 		--disable-libatomic \
 		--disable-libgomp \
-		--disable-libquadmath \
 		--disable-libssp \
 		--disable-libvtv \
-		--enable-languages=c,c++ \
+		--enable-clocale=gnu \
+		--enable-languages=c,c++,lto \
+		--enable-lto \
 		--enable-threads=posix \
 		--enable-__cxa_atexit \
 		--enable-default-pie \

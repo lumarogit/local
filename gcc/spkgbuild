@@ -38,6 +38,7 @@ build() {
 		--disable-libgomp \
 		--disable-libssp \
 		--disable-libvtv \
+		--enable-clocale=gnu \
 		--enable-languages=c,c++,lto \
 		--enable-lto \
 		--enable-threads=posix \
