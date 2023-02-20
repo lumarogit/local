@@ -78,7 +78,7 @@ static const struct arg args[] = {
 * { run_command, "Mem:%s", "free -m | awk '/^Mem/{print $7}'" },
 * { datetime, " %s", "%Y%m%d %R " }, 
 */
-{ temp, " Temp:%s", "/sys/devices/platform/coretemp.0/hwmon/hwmon3/temp2_input" }, 
+{ temp, " Temp:%s", "/sys/devices/platform/coretemp.0/hwmon/hwmon2/temp2_input" }, 
 { num_files, " Trash:%s", "/home/luis/.local/share/Trash/files/" },
 { run_command, " %s", estado },
 { run_command, ":%s", "amixer sget Master | grep 'Mono:' | awk '{ print $3 }'" },
