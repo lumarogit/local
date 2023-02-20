@@ -1,6 +1,6 @@
 #
 # Automatically generated file; DO NOT EDIT.
-# Linux/x86 6.2.0-rc8 Kernel Configuration
+# Linux/x86 6.2.0 Kernel Configuration
 #
 CONFIG_CC_VERSION_TEXT="gcc (Venom Linux 12.20230218-1) 12.2.1 20230218"
 CONFIG_CC_IS_GCC=y
@@ -1362,7 +1362,7 @@ CONFIG_BLK_DEV=y
 # CONFIG_BLK_DEV_NULL_BLK is not set
 # CONFIG_BLK_DEV_FD is not set
 # CONFIG_BLK_DEV_PCIESSD_MTIP32XX is not set
-CONFIG_BLK_DEV_LOOP=y
+CONFIG_BLK_DEV_LOOP=m
 CONFIG_BLK_DEV_LOOP_MIN_COUNT=8
 # CONFIG_BLK_DEV_DRBD is not set
 # CONFIG_BLK_DEV_NBD is not set
