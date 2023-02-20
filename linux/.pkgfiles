@@ -16126,6 +16126,8 @@ drwxr-xr-x root/root    lib/modules/6.2.0-Venom/kernel/drivers/acpi/
 -rw-r--r-- root/root    lib/modules/6.2.0-Venom/kernel/drivers/acpi/button.ko
 -rw-r--r-- root/root    lib/modules/6.2.0-Venom/kernel/drivers/acpi/thermal.ko
 -rw-r--r-- root/root    lib/modules/6.2.0-Venom/kernel/drivers/acpi/video.ko
+drwxr-xr-x root/root    lib/modules/6.2.0-Venom/kernel/drivers/block/
+-rw-r--r-- root/root    lib/modules/6.2.0-Venom/kernel/drivers/block/loop.ko
 drwxr-xr-x root/root    lib/modules/6.2.0-Venom/kernel/drivers/char/
 drwxr-xr-x root/root    lib/modules/6.2.0-Venom/kernel/drivers/char/agp/
 -rw-r--r-- root/root    lib/modules/6.2.0-Venom/kernel/drivers/char/agp/intel-gtt.ko
