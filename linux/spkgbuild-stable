@@ -5,7 +5,7 @@ name=linux
 version=6.2.0
 release=1
 source="https://cdn.kernel.org/pub/linux/kernel/v6.x/$name-${version%.0}.tar.xz
-	config-lenovo config-ryzen"
+	config-dell config-lenovo config-ryzen"
 NO_STRIP=yes
 
 build() {
@@ -37,7 +37,7 @@ build() {
 
 	cp  arch/x86/boot/bzImage $PKG/boot/vmlinuz-venom
 	cp .config $PKG/boot/config-venom
-        cp -iv System.map $PKG/boot/
+	#cp -iv System.map $PKG/boot/
 	echo $kernver > $PKG/lib/modules/KERNELVERSION
 
 	make clean

@@ -2,10 +2,10 @@
 # depends	: elfutils openssl yaml bc
 
 name=linux
-version=6.2.0
-release=7
+version=6.3.0
+release=1
 source="https://git.kernel.org/torvalds/t/$name-${version%.*}-rc$release.tar.gz
-	config-$(hostname)"
+	config-dell config-lenovo config-ryzen"
 NO_STRIP=yes
 
 build() {
@@ -37,7 +37,7 @@ build() {
 
 	cp -iv arch/x86/boot/bzImage $PKG/boot/vmlinuz-venom
 	cp -iv .config $PKG/boot/config-venom
-	cp -iv System.map $PKG/boot/
+	#cp -iv System.map $PKG/boot/
 	echo $kernver > $PKG/lib/modules/KERNELVERSION
 
 	make clean
