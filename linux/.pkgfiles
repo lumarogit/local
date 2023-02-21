@@ -16192,12 +16192,6 @@ drwxr-xr-x root/root    lib/modules/6.2.0-Venom/kernel/drivers/platform/x86/
 drwxr-xr-x root/root    lib/modules/6.2.0-Venom/kernel/drivers/thermal/
 drwxr-xr-x root/root    lib/modules/6.2.0-Venom/kernel/drivers/thermal/intel/
 -rw-r--r-- root/root    lib/modules/6.2.0-Venom/kernel/drivers/thermal/intel/x86_pkg_temp_thermal.ko
-drwxr-xr-x root/root    lib/modules/6.2.0-Venom/kernel/drivers/usb/
-drwxr-xr-x root/root    lib/modules/6.2.0-Venom/kernel/drivers/usb/host/
--rw-r--r-- root/root    lib/modules/6.2.0-Venom/kernel/drivers/usb/host/ehci-hcd.ko
--rw-r--r-- root/root    lib/modules/6.2.0-Venom/kernel/drivers/usb/host/ehci-pci.ko
--rw-r--r-- root/root    lib/modules/6.2.0-Venom/kernel/drivers/usb/host/xhci-hcd.ko
--rw-r--r-- root/root    lib/modules/6.2.0-Venom/kernel/drivers/usb/host/xhci-pci.ko
 drwxr-xr-x root/root    lib/modules/6.2.0-Venom/kernel/drivers/video/
 drwxr-xr-x root/root    lib/modules/6.2.0-Venom/kernel/drivers/video/backlight/
 -rw-r--r-- root/root    lib/modules/6.2.0-Venom/kernel/drivers/video/backlight/backlight.ko

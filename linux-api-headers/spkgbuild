@@ -2,10 +2,11 @@
 
 name=linux-api-headers
 version=6.2.0
-release=8
-source="https://git.kernel.org/torvalds/t/linux-${version%.*}-rc$release.tar.gz"
+release=1
+source="https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-${version%.0}.tar.xz"
+
 build() {
-	cd linux-${version%.*}-rc$release
+	cd linux-${version%.0}
 
 	make mrproper
 	make headers

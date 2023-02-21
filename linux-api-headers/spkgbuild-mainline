@@ -1,11 +1,11 @@
 # description	: Expose the kernel's API for use by Glibc
 
 name=linux-api-headers
-version=6.1.0
-release=rc8
-source="https://git.kernel.org/torvalds/t/linux-${version%.*}-$release.tar.gz"
+version=6.2.0
+release=8
+source="https://git.kernel.org/torvalds/t/linux-${version%.*}-rc$release.tar.gz"
 build() {
-	cd linux-${version%.*}-$release
+	cd linux-${version%.*}-rc$release
 
 	make mrproper
 	make headers
