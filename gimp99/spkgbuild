@@ -1,7 +1,7 @@
 # description	: GNU Image Manipulation Program
 # depends	: gegl appstream-glib json-glib mypaint-brushes1 gexiv2 poppler-glib glib-networking gtk3 librsvg libgudev
 
-name=gimp
+name=gimp99
 version=2.99.14
 release=1
 source="https://download.gimp.org/pub/$name/v${version%.*}/$name-$version.tar.xz"
