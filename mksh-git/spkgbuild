@@ -2,7 +2,7 @@
 # homepage	: http://mirbsd.org/mksh.htm
 
 name=mksh-git
-version=2023.02.20
+version=20230220
 _commit=ddd7a9469b44fb41fcca71d7c6a1d460ed8553da
 release=1
 backup="etc/mkshrc"
