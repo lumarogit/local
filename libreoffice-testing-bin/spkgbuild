@@ -1,0 +1,18 @@
+# description	: Full featured cross platform office suite (binary)
+# depends	: avahi libxinerama libx11 libxcb glib desktop-file-utils shared-mime-info dbus gtk3 fontconfig cups gst-plugins-base
+
+name=libreoffice-testing-bin
+version=7.5.1.2
+release=1
+lang="es" 
+source="$name-$version.tar.gz::http://download.documentfoundation.org/libreoffice/testing/${version%.*}/rpm/x86_64/LibreOffice_${version}_Linux_x86-64_rpm.tar.gz 
+$name-$version-$lang.tar.gz::https://download.documentfoundation.org/libreoffice/testing/${version%.*}/rpm/x86_64/LibreOffice_${version}_Linux_x86-64_rpm_langpack_$lang.tar.gz"
+
+build() {
+	for rpm in $SRC/LibreOffice_${version}*/RPMS/*; do
+		bsdtar -xf $rpm -p -o -C $PKG
+	done
+	rm $PKG/opt/libreoffice*/CREDITS* \
+	   $PKG/opt/libreoffice*/LICENSE* \
+	   $PKG/opt/libreoffice*/NOTICE
+}
