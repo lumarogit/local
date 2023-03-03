@@ -1,8 +1,8 @@
 #
 # Automatically generated file; DO NOT EDIT.
-# Linux/x86 6.2.0-rc8 Kernel Configuration
+# Linux/x86 6.2.2 Kernel Configuration
 #
-CONFIG_CC_VERSION_TEXT="gcc (Venom Linux 12.20230211-1) 12.2.1 20230211"
+CONFIG_CC_VERSION_TEXT="gcc (Venom Linux 12.20230225-1) 12.2.1 20230225"
 CONFIG_CC_IS_GCC=y
 CONFIG_GCC_VERSION=120201
 CONFIG_CLANG_VERSION=0
@@ -3415,17 +3415,17 @@ CONFIG_DCACHE_WORD_ACCESS=y
 CONFIG_FS_IOMAP=y
 # CONFIG_EXT2_FS is not set
 # CONFIG_EXT3_FS is not set
-# CONFIG_EXT4_FS is not set
+CONFIG_EXT4_FS=y
+CONFIG_EXT4_USE_FOR_EXT2=y
+CONFIG_EXT4_FS_POSIX_ACL=y
+# CONFIG_EXT4_FS_SECURITY is not set
+# CONFIG_EXT4_DEBUG is not set
+CONFIG_JBD2=y
+# CONFIG_JBD2_DEBUG is not set
+CONFIG_FS_MBCACHE=y
 # CONFIG_REISERFS_FS is not set
 # CONFIG_JFS_FS is not set
-CONFIG_XFS_FS=y
-# CONFIG_XFS_SUPPORT_V4 is not set
-# CONFIG_XFS_QUOTA is not set
-# CONFIG_XFS_POSIX_ACL is not set
-# CONFIG_XFS_RT is not set
-# CONFIG_XFS_ONLINE_SCRUB is not set
-# CONFIG_XFS_WARN is not set
-# CONFIG_XFS_DEBUG is not set
+# CONFIG_XFS_FS is not set
 # CONFIG_GFS2_FS is not set
 # CONFIG_BTRFS_FS is not set
 # CONFIG_NILFS2_FS is not set
