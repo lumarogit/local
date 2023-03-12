@@ -1,0 +1,25 @@
+# description	: Implementation of Windows DLL's and core
+# depends	: alsa-lib dbus gnutls opencl-headers glu libxslt v4l-utils libjpeg-turbo libtiff lcms2 fontconfig gnutls lcms2 mpg123 libxcomposite libxcursor libxxf86dga
+
+name=wine64
+version=8.3
+release=1
+source="https://dl.winehq.org/wine/source/${version%%.*}.x/$name-$version.tar.xz"
+
+build() {
+	cd $name-$version
+
+	./configure \
+		--prefix=/usr \
+		--libdir=/usr/lib \
+		--with-x \
+		--enable-win64
+	make
+	make DESTDIR=$PKG install
+
+	# Exclude libraries for revdep
+	install -d $PKG/etc/revdep.d
+	echo "/usr/lib/wine/x86_64-unix/" > $PKG/etc/revdep.d/$name.conf
+
+	rm -r $PKG/usr/share/man/??.UTF-8
+}
