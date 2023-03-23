@@ -4,8 +4,7 @@
 name=linux-libre
 version=6.2.7
 release=1
-#source="https://cdn.kernel.org/pub/linux/kernel/v6.x/$name-${version%.0}.tar.xz
-source="${name}-${version}.tar.xz::https://linux-libre.fsfla.org/pub/linux-libre/releases/${version}-gnu/${name}-${version}-gnu.tar.xz
+source="${name}-${version}.tar.xz::https://linux-libre.fsfla.org/pub/linux-libre/releases/${version%.0}-gnu/${name}-${version%.0}-gnu.tar.xz
 	config-lenovo"
 NO_STRIP=yes
 
