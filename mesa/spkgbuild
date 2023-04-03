@@ -1,16 +1,21 @@
 # description	: OpenGL compatible 3D graphics library
-# depends	: python3-mako llvm elfutils bison flex libxext libxdamage libxshmfence libxxf86vm libxrandr libdrm libglvnd libva
+# depends	: python3-mako elfutils bison flex libxext libxdamage libxshmfence libxxf86vm libxrandr libdrm libglvnd libva
 
 name=mesa
 version=23.0.1
 release=1
 source="https://mesa.freedesktop.org/archive/$name-$version.tar.xz"
 build() {
+
+	LLVM="-Dllvm=true -Dshared-llvm=true -Ddraw-use-llvm=true"
+
 	if scratch isinstalled xf86-video-amdgpu ; then
 		OPTS="-Dgallium-va=enabled -Dgallium-drivers=swrast,radeonsi"
 	elif scratch isinstalled xf86-video-ati ; then
 		OPTS="-Dgallium-va=enabled -Dgallium-drivers=swrast,r600" 
 	else
+		export CC=gcc CXX=g++
+		LLVM="-Dllvm=false -Dshared-llvm=false -Ddraw-use-llvm=false"
 		OPTS="-Dgallium-va=disabled -Dgallium-drivers=swrast,crocus"
 	fi
 
@@ -18,8 +23,6 @@ build() {
 		-Db_lto=false \
 		-Ddri3=enabled \
 		-Degl=enabled \
-		-Dllvm=enabled \
-		-Dshared-llvm=enabled \
 		-Dgbm=enabled \
 		-Dgles1=disabled \
 		-Dgles2=enabled \
@@ -37,7 +40,7 @@ build() {
 		-Dvulkan-drivers= \
 		-Dglvnd=true \
 		-Dvideo-codecs=vc1dec,h264dec,h264enc,h265dec,h265enc \
-		-Dvalgrind=disabled $OPTS
+		-Dvalgrind=disabled $LLVM $OPTS
 	meson compile -C build
 	DESTDIR=$PKG meson install -C build
 
