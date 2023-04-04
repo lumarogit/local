@@ -1,10 +1,14 @@
 # description	: OpenGL compatible 3D graphics library
-# depends	: python3-mako elfutils bison flex libxext libxdamage libxshmfence libxxf86vm libxrandr libdrm libglvnd libva
+# depends	: llvm python3-mako elfutils bison flex libxext libxdamage libxshmfence libxxf86vm libxrandr libdrm libglvnd libva
 
 name=mesa
 version=23.0.1
-release=1
-source="https://mesa.freedesktop.org/archive/$name-$version.tar.xz"
+release=2
+source="https://mesa.freedesktop.org/archive/$name-$version.tar.xz
+	0001-iris-Retry-DRM_IOCTL_I915_GEM_EXECBUFFER2-on-ENOMEM.patch 
+	0002-Revert-iris-Avoid-abort-if-kernel-can-t-allocate-mem.patch  
+	0003-intel-fs-fix-scheduling-of-HALT-instructions.patch"
+
 build() {
 
 	LLVM="-Dllvm=true -Dshared-llvm=true -Ddraw-use-llvm=true"
@@ -18,6 +22,10 @@ build() {
 		LLVM="-Dllvm=false -Dshared-llvm=false -Ddraw-use-llvm=false"
 		OPTS="-Dgallium-va=disabled -Dgallium-drivers=swrast,crocus"
 	fi
+
+	patch -d $name-$version -Np1 -i $SRC/0001-iris-Retry-DRM_IOCTL_I915_GEM_EXECBUFFER2-on-ENOMEM.patch
+	patch -d $name-$version -Np1 -i $SRC/0002-Revert-iris-Avoid-abort-if-kernel-can-t-allocate-mem.patch
+	patch -d $name-$version -Np1 -i $SRC/0003-intel-fs-fix-scheduling-of-HALT-instructions.patch
 
 	venom-meson $name-$version build \
 		-Db_lto=false \
