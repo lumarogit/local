@@ -6,7 +6,8 @@ name=lld
 version=16.0.1
 release=1
 source="https://github.com/llvm/llvm-project/releases/download/llvmorg-$version/lld-$version.src.tar.xz
-	https://github.com/llvm/llvm-project/releases/download/llvmorg-$version/cmake-$version.src.tar.xz"
+	https://github.com/llvm/llvm-project/releases/download/llvmorg-$version/cmake-$version.src.tar.xz
+	lld-import-compact_unwind_encoding.h-from-libu.patch"
 noextract="cmake-$version.src.tar.xz"
 
 
@@ -20,7 +21,9 @@ build() {
 
 	cd $name-$version.src
 
-	# The upstream expects it to be extracted at the same level as the llvm tarball, and                                                                          
+	patch -Np1 -i $SRC/lld-import-compact_unwind_encoding.h-from-libu.patch
+
+	# The upstream expects it to be extracted at the same level as the llvm tarball, and
 	# the extracted directory renamed to cmake
 	tar -xf ../cmake-${version}.src.tar.xz
 	sed "/LLVM_COMMON_CMAKE_UTILS/s@../cmake@cmake-${version}.src@" -i CMakeLists.txt
