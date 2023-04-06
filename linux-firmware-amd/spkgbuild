@@ -5,9 +5,19 @@ version=20230404
 release=1
 source="https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/snapshot/linux-firmware-$version.tar.gz"
 
+amdf=fam19
+igpu=green
+rtlk=8168h-2
+
 build() {
-	cd linux-firmware-$version	
-	mkdir -pv $PKG/lib/firmware/amdgpu
-	cp -r amd  amd-ucode rtl_nic $PKG/lib/firmware/
-	cp amdgpu/green* $PKG/lib/firmware/amdgpu
+	cd linux-firmware-$version
+
+	for i in amd amdgpu amd-ucode rtl_nic; do
+		mkdir -pv $PKG/lib/firmware/${i}
+	done
+	
+	cp amd/*${amdf}* $PKG/lib/firmware/amd
+	cp amdgpu/${igpu}* $PKG/lib/firmware/amdgpu
+	cp amd-ucode/*${amdf}* $PKG/lib/firmware/amd-ucode
+	cp rtl_nic/*${rtlk}* $PKG/lib/firmware/rtl_nic
 }
