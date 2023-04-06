@@ -1,0 +1,25 @@
+# description	: Firmware files for Linux
+
+name=linux-firmware-radeon
+version=20230404
+release=1
+#source="https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/snapshot/linux-firmware-$version.tar.gz"
+
+gpu=REDWOOD
+rtlk=8168d-2
+
+build() {
+	curl -Os https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/tree/radeon/REDWOOD_me.bin
+	curl -Os https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/tree/radeon/REDWOOD_pfp.bin
+	curl -Os https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/tree/radeon/REDWOOD_rlc.bin
+	curl -Os https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/tree/radeon/REDWOOD_smc.bin
+	curl -Os https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/tree/rtl_nic/rtl8168d-2.fw
+
+
+	for i in radeon rtl_nic; do
+		mkdir -pv $PKG/lib/firmware/${i}
+	done
+	
+	cp ${gpu}* $PKG/lib/firmware/radeon
+	cp *${rtlk}* $PKG/lib/firmware/rtl_nic
+}
