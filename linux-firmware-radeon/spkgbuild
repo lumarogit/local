@@ -3,29 +3,18 @@
 name=linux-firmware-radeon
 version=20230404
 release=1
-#source="https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/snapshot/linux-firmware-$version.tar.gz"
+source="https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/snapshot/linux-firmware-$version.tar.gz"
 
-gpu=R600,REDWOOD
+gpu=REDWOOD
 rtlk=8168d-2
 
 build() {
-	# AMD ATI Radeon HD 5670/5690/5730
-	curl -Os https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/tree/radeon/R600_me.bin
-	curl -Os https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/tree/radeon/R600_pfp.bin
-	curl -Os https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/tree/radeon/R600_rlc.bin
-	curl -Os https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/tree/radeon/R600_uvd.bin
-	curl -Os https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/tree/radeon/REDWOOD_me.bin
-	curl -Os https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/tree/radeon/REDWOOD_pfp.bin
-	curl -Os https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/tree/radeon/REDWOOD_rlc.bin
-	curl -Os https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/tree/radeon/REDWOOD_smc.bin
-	# RTL 8168
-	curl -Os https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/tree/rtl_nic/rtl8168d-2.fw
-
+	cd linux-firmware-$version
 
 	for i in radeon rtl_nic; do
 		mkdir -pv $PKG/lib/firmware/${i}
 	done
 	
-	cp R* $PKG/lib/firmware/radeon
-	cp *${rtlk}* $PKG/lib/firmware/rtl_nic
+	cp radeon/CYPRESS_uvd.bin radeon/${gpu}* $PKG/lib/firmware/radeon
+	cp rtl_nic/*${rtlk}* $PKG/lib/firmware/rtl_nic
 }
