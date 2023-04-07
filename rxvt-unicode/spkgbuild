@@ -3,18 +3,19 @@
 
 name=rxvt-unicode
 version=9.31
-release=1
+release=2
 source="http://dist.schmorp.de/$name/Attic/$name-$version.tar.bz2
-	font-resizing.patch
-	font-width-fix.patch
-	line-spacing-fix.patch
+	gentables.patch  
+	rxvt-unicode-kerning.patch
 	URxvt"
 
 build() {
 	cd $name-$version
+
 	for i in $SRC/*.patch ; do
 	    patch -Np1 -i $i
 	done
+
   	./configure \
 		--prefix=/usr \
 		--disable-everything \

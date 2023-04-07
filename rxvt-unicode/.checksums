@@ -1,5 +1,4 @@
 7c96dae1b166bf18f5b630f8555f42ab  URxvt
-39e2a55c427b2bda9d97c4082b17498b  font-resizing.patch
-cc4393b5a260cc33be4f9c2e322f020d  font-width-fix.patch
-12e85a09f42c258dd2a0d5227b274e3d  line-spacing-fix.patch
+105d79e77f2aedc2520791177c74feda  gentables.patch
 3d0ec83705c9b9ff301a4b9965b3cd9f  rxvt-unicode-9.31.tar.bz2
+585157318cb78733804eed507b77c37c  rxvt-unicode-kerning.patch
