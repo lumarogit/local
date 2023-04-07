@@ -1,0 +1,41 @@
+ $ cat /usr/ports/local/linux-firmware-amd/spkgbuild                                                                                                      
+# description  : Firmware files for Linux
+
+name=linux-firmware-amd
+version=20230404
+release=1
+#source="https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/snapshot/linux-firmware-$version.tar.gz"
+amdf=fam19
+igpu=green
+rtlk=8168h-2
+
+build() {
+	# amd fam19
+	curl -Os https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/tree/amd/amd_sev_fam19h_model0xh.sbin
+	# amd-ucode fam19
+	curl -Os https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/tree/amd-ucode/microcode_amd_fam19h.bin
+	curl -Os https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/tree/amd-ucode/microcode_amd_fam19h.bin.asc
+	# amdgpu
+	curl -Os https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/tree/amdgpu/green_sardine_asd.bin
+	curl -Os https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/tree/amdgpu/green_sardine_ce.bin
+	curl -Os https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/tree/amdgpu/green_sardine_dmcub.bin
+	curl -Os https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/tree/amdgpu/green_sardine_me.bin
+	curl -Os https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/tree/amdgpu/green_sardine_mec.bin
+	curl -Os https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/tree/amdgpu/green_sardine_mec2.bin
+	curl -Os https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/tree/amdgpu/green_sardine_pfp.bin
+	curl -Os https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/tree/amdgpu/green_sardine_rlc.bin
+	curl -Os https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/tree/amdgpu/green_sardine_sdma.bin
+	curl -Os https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/tree/amdgpu/green_sardine_ta.bin
+	curl -Os https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/tree/amdgpu/green_sardine_vcn.bin
+	# Realtek 8169
+	curl -Os https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/tree/rtl_nic/rtl8168h-2.fw
+  
+	for i in amd amdgpu amd-ucode rtl_nic; do
+		mkdir -pv $PKG/lib/firmware/${i}
+	done
+  
+	cp amd*${amdf}* $PKG/lib/firmware/amd
+	cp microcode*${amdf}* $PKG/lib/firmware/amd-ucode
+	cp ${igpu}* $PKG/lib/firmware/amdgpu
+	cp rtl*${rtlk}* $PKG/lib/firmware/rtl_nic
+}
