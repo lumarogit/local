@@ -65,8 +65,8 @@ static const Layout layouts[] = {
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col1, "-nf", col3, "-sb", col1, "-sf", col4, NULL };
-static const char *termcmd[]  = { "urxvtc", NULL };
-static const char *nnncmd[]        = { "urxvtc","-title", "nnn - file manager", "-e", "nnn", NULL };
+static const char *termcmd[]  = { "st", NULL };
+static const char *nnncmd[]        = { "st","-t", "nnn - file manager", "-e", "nnn", NULL };
 static const char *upvol[]         = { "amixer", "-q","sset","Master","1%+", NULL };
 static const char *downvol[]       = { "amixer", "-q","sset","Master","1%-", NULL };
 static const char *mute[]          = { "amixer", "set", "Master", "toggle",  NULL };
