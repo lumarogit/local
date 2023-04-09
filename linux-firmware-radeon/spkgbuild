@@ -4,16 +4,17 @@ name=linux-firmware-radeon
 version=20230404
 release=1
 #source="https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/snapshot/linux-firmware-$version.tar.gz"
+baseurl=https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/plain
 
 build() {
 	# AMD ATI Radeon HD 5670/5690/5730
-	curl -Os https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/plain/radeon/CYPRESS_uvd.bin
-	curl -Os https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/plain/radeon/REDWOOD_me.bin
-	curl -Os https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/plain/radeon/REDWOOD_pfp.bin
-	curl -Os https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/plain/radeon/REDWOOD_rlc.bin
-	curl -Os https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/plain/radeon/REDWOOD_smc.bin
-	# RTL 8168
-	curl -Os https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/plain/rtl_nic/rtl8168d-2.fw
+	radeonurl=${baseurl}/radeon/
+	for r in CYPRESS_uvd.bin REDWOOD_me.bin REDWOOD_pfp.bin REDWOOD_rlc.bin REDWOOD_smc.bin; do
+		curl -Os ${radeonurl}${r}
+	done
+
+	# Realtek 8168
+	curl -Os ${baseurl}/rtl_nic/rtl8168d-2.fw
 
 	for i in radeon rtl_nic; do
 		mkdir -pv $PKG/lib/firmware/${i}
