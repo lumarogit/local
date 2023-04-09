@@ -1,15 +1,15 @@
 # description	: Linux kernel, sources and modules
-# depends	: bc elfutils openssl yaml
+# depends	: elfutils openssl yaml bc
 
 name=linux
-version=6.2.10
-release=1
-source="https://cdn.kernel.org/pub/linux/kernel/v6.x/$name-${version%.0}.tar.xz
+version=6.3.0
+release=6
+source="https://git.kernel.org/torvalds/t/$name-${version%.*}-rc$release.tar.gz
 	config-dell config-lenovo config-ryzen"
 NO_STRIP=yes
 
 build() {
-	cd $name-${version%.0}
+	cd $name-${version%.*}-rc$release
 	
 	make mrproper
 
@@ -19,24 +19,24 @@ build() {
 	sed '/^CONFIG_LOCALVERSION=/d' -i .config
 	echo 'CONFIG_LOCALVERSION="-Venom"' >> .config
 
-	kernver=${version}$(grep CONFIG_LOCALVERSION= .config | cut -d '"' -f2)
+	kernver=${version}-rc$release$(grep CONFIG_LOCALVERSION= .config | cut -d '"' -f2)
 
 	#make menuconfig
 
 	# https://github.com/graysky2/kernel_compiler_patch
-	# Define a '-march= option' exporting the value/values 
-	# for the KCFLAGS and KCPPFLAGS before calling make.
-	# More info: https://docs.kernel.org/kbuild/kbuild.html
+        # Define a '-march= option' exporting the value/values 
+        # for the KCFLAGS and KCPPFLAGS before calling make.
+        # More info: https://docs.kernel.org/kbuild/kbuild.html
 	export KCFLAGS=' -march=native'
 	export KCPPFLAGS=' -march=native'
-
-	make 
+	
+	make
 	make INSTALL_MOD_PATH=$PKG modules_install
 
 	mkdir -p $PKG/boot
 
-	cp  arch/x86/boot/bzImage $PKG/boot/vmlinuz-venom
-	cp .config $PKG/boot/config-venom
+	cp -iv arch/x86/boot/bzImage $PKG/boot/vmlinuz-venom
+	cp -iv .config $PKG/boot/config-venom
 	#cp -iv System.map $PKG/boot/
 	echo $kernver > $PKG/lib/modules/KERNELVERSION
 
@@ -74,7 +74,7 @@ build() {
 
 	rm $PKG/lib/modules/$kernver/build \
 	   $PKG/lib/modules/$kernver/source
-	mv $SRC/linux-${version%.0} $PKG/lib/modules/$kernver/build
+	mv $SRC/$name-${version%.*}-rc$release $PKG/lib/modules/$kernver/build
 	ln -sv build $PKG/lib/modules/$kernver/source
 
 	# remove now broken symlinks
