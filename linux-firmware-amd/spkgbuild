@@ -12,17 +12,20 @@ rtlk=rtl8168h-2
 build() {
 
 	# AMD UCODE
-	curl -Os ${baseurl}/amd-ucode/microcode_amd_${amdf}.bin 
-	curl -Os ${baseurl}/amd-ucode/microcode_amd_${amdf}.bin.asc
+	acurl=${baseurl}/amd-ucode/microcode_amd_
+
+	for c in ${amdf}.bin ${amdf}.bin.asc; do
+		curl -Os ${acurl}${c}
+	done
 
 	#  AMD 
 	curl -Os ${baseurl}/amd/amd_sev_${amdf}_model0xh.sbin
 	
 	# AMDGPU
 	agurl=${baseurl}/amdgpu/
-	
-	for i in ${agpu}asd.bin ${agpu}ce.bin ${agpu}dmcub.bin ${agpu}me.bin ${agpu}mec.bin ${agpu}mec2.bin ${agpu}pfp.bin ${agpu}rlc.bin ${agpu}sdma.bin ${agpu}ta.bin ${agpu}vcn.bin; do
-		curl -Os ${agurl}${i}
+
+	for g in ${agpu}asd.bin ${agpu}ce.bin ${agpu}dmcub.bin ${agpu}me.bin ${agpu}mec.bin ${agpu}mec2.bin ${agpu}pfp.bin ${agpu}rlc.bin ${agpu}sdma.bin ${agpu}ta.bin ${agpu}vcn.bin; do
+		curl -Os ${agurl}${g}
 	done
 	
 	# Realtek 8169
@@ -35,5 +38,5 @@ build() {
 	cp amd*${amdf}* $PKG/lib/firmware/amd
 	cp microcode*${amdf}* $PKG/lib/firmware/amd-ucode
 	cp ${agpu}* $PKG/lib/firmware/amdgpu
-	cp *${rtlk}* $PKG/lib/firmware/rtl_nic
+	cp ${rtlk}* $PKG/lib/firmware/rtl_nic
 }
