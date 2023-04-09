@@ -3,9 +3,10 @@
 
 name=mesa
 version=23.0.2
-release=1
+release=2
 source="https://mesa.freedesktop.org/archive/$name-$version.tar.xz
-	intel-fs-fix-scheduling-of-HALT-instructions.patch"
+	intel-fs-fix-scheduling-of-HALT-instructions.patch
+	egl-wayland-Fix-destruction-of-event-queue-with-prox.patch"
 
 build() {
 
@@ -22,6 +23,7 @@ build() {
 	fi
 
 	patch -d $name-$version -Np1 -i $SRC/intel-fs-fix-scheduling-of-HALT-instructions.patch
+	patch -d $name-$version -Np1 -i $SRC/egl-wayland-Fix-destruction-of-event-queue-with-prox.patch
 
 	venom-meson $name-$version build \
 		-Db_lto=false \
