@@ -3,40 +3,42 @@
 name=linux-firmware-amd
 version=20230404
 release=1
-#source="https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/snapshot/linux-firmware-$version.tar.gz"
 baseurl=https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/plain
 amdf=fam19h
 agpu=green_sardine_
 rtlk=rtl8168h-2
+source="${baseurl}/amd-ucode/microcode_amd_${amdf}.bin 
+  ${baseurl}/amd-ucode/microcode_amd_${amdf}.bin.asc
+  ${baseurl}/amd/amd_sev_${amdf}_model0xh.sbin
+  ${baseurl}/amdgpu/${agpu}asd.bin 
+  ${baseurl}/amdgpu/${agpu}ce.bin 
+  ${baseurl}/amdgpu/${agpu}dmcub.bin 
+  ${baseurl}/amdgpu/${agpu}me.bin 
+  ${baseurl}/amdgpu/${agpu}mec.bin 
+  ${baseurl}/amdgpu/${agpu}mec2.bin 
+  ${baseurl}/amdgpu/${agpu}pfp.bin 
+  ${baseurl}/amdgpu/${agpu}rlc.bin 
+  ${baseurl}/amdgpu/${agpu}sdma.bin 
+  ${baseurl}/amdgpu/${agpu}ta.bin 
+  ${baseurl}/amdgpu/${agpu}vcn.bin
+  ${baseurl}/rtl_nic/${rtlk}.fw"
 
 build() {
 
-	# AMD UCODE
-	acurl=${baseurl}/amd-ucode/microcode_amd_
-
-	for c in ${amdf}.bin ${amdf}.bin.asc; do
-		curl -Os ${acurl}${c}
-	done
-
-	#  AMD 
-	curl -Os ${baseurl}/amd/amd_sev_${amdf}_model0xh.sbin
-	
-	# AMDGPU
-	agurl=${baseurl}/amdgpu/
-
-	for g in ${agpu}asd.bin ${agpu}ce.bin ${agpu}dmcub.bin ${agpu}me.bin ${agpu}mec.bin ${agpu}mec2.bin ${agpu}pfp.bin ${agpu}rlc.bin ${agpu}sdma.bin ${agpu}ta.bin ${agpu}vcn.bin; do
-		curl -Os ${agurl}${g}
-	done
-	
-	# Realtek 8169
-	curl -Os ${baseurl}/rtl_nic/${rtlk}.fw
+  # create $PKG dirs
+  for i in amd amdgpu amd-ucode rtl_nic; do
+    mkdir -pv $PKG/lib/firmware/${i}
+  done
   
-	for i in amd amdgpu amd-ucode rtl_nic; do
-		mkdir -pv $PKG/lib/firmware/${i}
-	done
-  
-	cp amd*${amdf}* $PKG/lib/firmware/amd
-	cp microcode*${amdf}* $PKG/lib/firmware/amd-ucode
-	cp ${agpu}* $PKG/lib/firmware/amdgpu
-	cp ${rtlk}* $PKG/lib/firmware/rtl_nic
+  # copy blobs in $PKG
+  cp amd*${amdf}* $PKG/lib/firmware/amd
+  cp microcode*${amdf}* $PKG/lib/firmware/amd-ucode
+  cp ${agpu}* $PKG/lib/firmware/amdgpu
+  cp ${rtlk}* $PKG/lib/firmware/rtl_nic
+
+  # remove blobs from source dir
+  cd $SOURCE_DIR
+  for c in *.bin *.bin.asc *.fw *.sbin; do
+    rm -f $c
+  done
 }

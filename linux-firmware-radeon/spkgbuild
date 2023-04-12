@@ -1,25 +1,30 @@
-# description	: Firmware files for Linux
+# description  : Firmware files for Linux
 
 name=linux-firmware-radeon
 version=20230404
 release=1
-#source="https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/snapshot/linux-firmware-$version.tar.gz"
 baseurl=https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/plain
+source="${baseurl}/radeon/CYPRESS_uvd.bin
+    ${baseurl}/radeon/REDWOOD_me.bin
+    ${baseurl}/radeon/REDWOOD_pfp.bin
+    ${baseurl}/radeon/REDWOOD_rlc.bin
+    ${baseurl}/radeon/REDWOOD_smc.bin
+    ${baseurl}/rtl_nic/rtl8168d-2.fw"
 
 build() {
-	# AMD ATI Radeon HD 5670/5690/5730
-	radeonurl=${baseurl}/radeon/
-	for r in CYPRESS_uvd.bin REDWOOD_me.bin REDWOOD_pfp.bin REDWOOD_rlc.bin REDWOOD_smc.bin; do
-		curl -Os ${radeonurl}${r}
-	done
 
-	# Realtek 8168
-	curl -Os ${baseurl}/rtl_nic/rtl8168d-2.fw
+  # create $PKG dirs
+  for i in radeon rtl_nic; do
+    mkdir -pv $PKG/lib/firmware/${i}
+  done
 
-	for i in radeon rtl_nic; do
-		mkdir -pv $PKG/lib/firmware/${i}
-	done
+  # copy blobs in $PKG
+  cp CYPRESS* REDWOOD* $PKG/lib/firmware/radeon
+  cp rtl8168* $PKG/lib/firmware/rtl_nic
 
-	cp CYPRESS* REDWOOD* $PKG/lib/firmware/radeon
-	cp rtl8168* $PKG/lib/firmware/rtl_nic
+  # remove blobs from source dir
+  cd $SOURCE_DIR
+  for c in *.bin *.fw; do
+    rm -f $c
+  done
 }
