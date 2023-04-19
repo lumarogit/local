@@ -2,19 +2,18 @@
 # depends	: libmpc libmpfr libgmp zlib
 
 name=gcc-13
-version=13.20230409
+version=13.1.0
 release=1
-next=13.1
-source="${name%-*}-$version.tar.xz::https://gcc.gnu.org/pub/gcc/snapshots/LATEST-${version%.*}/${name%-*}-${version%.*}-${version#*.}.tar.xz
-	c89 c99"
-#https://gcc.gnu.org/pub/gcc/snapshots/LATEST-13/gcc-13-20230409.tar.xz
+date=20230419
+next=13.1.1
+source="${name%-*}-RC-$version.tar.xz::https://gcc.gnu.org/pub/gcc/snapshots/$version-RC-$date/${name%-*}-$version-RC-$date.tar.xz"
 
 bsdtar() {
 	tar $@
 }
 
 build() {
-	cd ${name%-*}-${version%.*}-${version#*.}
+	cd ${name%-*}-$version-RC-$date
 
 	# /lib is 64bit libraries directory
 	sed -e '/m64=/s/lib64/lib/' \
@@ -37,16 +36,16 @@ build() {
 		--disable-decimal-float \
 		--disable-libatomic \
 		--disable-libgomp \
+		--disable-libquadmath \
 		--disable-libssp \
 		--disable-libvtv \
 		--enable-clocale=gnu \
-		--enable-languages=c,c++,lto \
-		--enable-lto \
+		--enable-languages=c,c++ \
 		--enable-threads=posix \
 		--enable-__cxa_atexit \
 		--enable-default-pie \
 		--enable-default-ssp \
-		--with-pkgversion="Venom Linux $version-$release" \
+		--with-pkgversion="Venom Linux $version-RC-$date" \
 		--with-system-zlib 
 
 	make
@@ -62,9 +61,6 @@ build() {
 
 	mkdir -pv $PKG/usr/share/gdb/auto-load/usr/lib
 	mv -v $PKG/usr/lib/*gdb.py $PKG/usr/share/gdb/auto-load/usr/lib
-
-	install -Dm755 $SRC/c89 $PKG/usr/bin/c89
-	install -Dm755 $SRC/c99 $PKG/usr/bin/c99
 
 #	rm -r $PKG/usr/share/${name%-*}-$next
 }

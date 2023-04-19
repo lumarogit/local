@@ -2,9 +2,9 @@
 # depends	: libmpc libmpfr libgmp zlib
 
 name=gcc
-version=12.2.0
-release=20220812
-next=12.2.1
+version=13.1.0
+release=20230419
+next=13.1.1
 source="$name-RC-$version.tar.xz::https://gcc.gnu.org/pub/gcc/snapshots/$version-RC-$release/$name-$version-RC-$release.tar.xz"
 
 bsdtar() {

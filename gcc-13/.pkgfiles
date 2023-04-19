@@ -1,11 +1,9 @@
-gcc-13-13.20230409-1
+gcc-13-13.1.0-1
 drwxr-xr-x root/root    lib/
 lrwxrwxrwx root/root    lib/cpp -> ../usr/bin/cpp
 drwxr-xr-x root/root    usr/
 drwxr-xr-x root/root    usr/bin/
 hrwxr-xr-x root/root    usr/bin/c++ link to usr/bin/x86_64-pc-linux-gnu-c++
--rwxr-xr-x root/root    usr/bin/c89
--rwxr-xr-x root/root    usr/bin/c99
 lrwxrwxrwx root/root    usr/bin/cc -> gcc
 -rwxr-xr-x root/root    usr/bin/cpp
 hrwxr-xr-x root/root    usr/bin/g++ link to usr/bin/x86_64-pc-linux-gnu-c++
@@ -882,7 +880,7 @@ drwxr-xr-x root/root    usr/include/c++/13.0.1/x86_64-pc-linux-gnu/ext/
 -rw-r--r-- root/root    usr/include/c++/13.0.1/x86_64-pc-linux-gnu/ext/opt_random.h
 drwxr-xr-x root/root    usr/lib/
 drwxr-xr-x root/root    usr/lib/bfd-plugins/
-lrwxrwxrwx root/root    usr/lib/bfd-plugins/liblto_plugin.so -> ../../lib/gcc/x86_64-pc-linux-gnu/13.1/liblto_plugin.so
+lrwxrwxrwx root/root    usr/lib/bfd-plugins/liblto_plugin.so -> ../../lib/gcc/x86_64-pc-linux-gnu/13.1.1/liblto_plugin.so
 drwxr-xr-x root/root    usr/lib/gcc/
 drwxr-xr-x root/root    usr/lib/gcc/x86_64-pc-linux-gnu/
 drwxr-xr-x root/root    usr/lib/gcc/x86_64-pc-linux-gnu/13.0.1/
@@ -905,6 +903,7 @@ drwxr-xr-x root/root    usr/lib/gcc/x86_64-pc-linux-gnu/13.0.1/include/
 -rw-r--r-- root/root    usr/lib/gcc/x86_64-pc-linux-gnu/13.0.1/include/adxintrin.h
 -rw-r--r-- root/root    usr/lib/gcc/x86_64-pc-linux-gnu/13.0.1/include/ammintrin.h
 -rw-r--r-- root/root    usr/lib/gcc/x86_64-pc-linux-gnu/13.0.1/include/amxbf16intrin.h
+-rw-r--r-- root/root    usr/lib/gcc/x86_64-pc-linux-gnu/13.0.1/include/amxcomplexintrin.h
 -rw-r--r-- root/root    usr/lib/gcc/x86_64-pc-linux-gnu/13.0.1/include/amxfp16intrin.h
 -rw-r--r-- root/root    usr/lib/gcc/x86_64-pc-linux-gnu/13.0.1/include/amxint8intrin.h
 -rw-r--r-- root/root    usr/lib/gcc/x86_64-pc-linux-gnu/13.0.1/include/amxtileintrin.h
@@ -984,8 +983,6 @@ drwxr-xr-x root/root    usr/lib/gcc/x86_64-pc-linux-gnu/13.0.1/include/
 -rw-r--r-- root/root    usr/lib/gcc/x86_64-pc-linux-gnu/13.0.1/include/popcntintrin.h
 -rw-r--r-- root/root    usr/lib/gcc/x86_64-pc-linux-gnu/13.0.1/include/prfchiintrin.h
 -rw-r--r-- root/root    usr/lib/gcc/x86_64-pc-linux-gnu/13.0.1/include/prfchwintrin.h
--rw-r--r-- root/root    usr/lib/gcc/x86_64-pc-linux-gnu/13.0.1/include/quadmath.h
--rw-r--r-- root/root    usr/lib/gcc/x86_64-pc-linux-gnu/13.0.1/include/quadmath_weak.h
 -rw-r--r-- root/root    usr/lib/gcc/x86_64-pc-linux-gnu/13.0.1/include/raointintrin.h
 -rw-r--r-- root/root    usr/lib/gcc/x86_64-pc-linux-gnu/13.0.1/include/rdseedintrin.h
 -rw-r--r-- root/root    usr/lib/gcc/x86_64-pc-linux-gnu/13.0.1/include/rtmintrin.h
@@ -1565,10 +1562,6 @@ lrwxrwxrwx root/root    usr/lib/liblsan.so -> liblsan.so.0.0.0
 lrwxrwxrwx root/root    usr/lib/liblsan.so.0 -> liblsan.so.0.0.0
 -rwxr-xr-x root/root    usr/lib/liblsan.so.0.0.0
 -rw-r--r-- root/root    usr/lib/liblsan_preinit.o
--rw-r--r-- root/root    usr/lib/libquadmath.a
-lrwxrwxrwx root/root    usr/lib/libquadmath.so -> libquadmath.so.0.0.0
-lrwxrwxrwx root/root    usr/lib/libquadmath.so.0 -> libquadmath.so.0.0.0
--rwxr-xr-x root/root    usr/lib/libquadmath.so.0.0.0
 -rw-r--r-- root/root    usr/lib/libsanitizer.spec
 -rw-r--r-- root/root    usr/lib/libstdc++.a
 lrwxrwxrwx root/root    usr/lib/libstdc++.so -> libstdc++.so.6.0.31
@@ -1607,7 +1600,6 @@ drwxr-xr-x root/root    usr/share/info/
 -rw-r--r-- root/root    usr/share/info/gccinstall.info.gz
 -rw-r--r-- root/root    usr/share/info/gccint.info.gz
 -rw-r--r-- root/root    usr/share/info/libitm.info.gz
--rw-r--r-- root/root    usr/share/info/libquadmath.info.gz
 drwxr-xr-x root/root    usr/share/man/
 drwxr-xr-x root/root    usr/share/man/man1/
 -rw-r--r-- root/root    usr/share/man/man1/cpp.1.gz
