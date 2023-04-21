@@ -55,10 +55,4 @@ build() {
 
 	cmake --build build
 	DESTDIR=$PKG cmake --install build
-
-	# multilib stub
-	mv $PKG/usr/include/llvm/Config/llvm-config.h \
-	   $PKG/usr/include/llvm/Config/llvm-config-64.h
-	cp $SRC/llvm-config.h \
-	   $PKG/usr/include/llvm/Config/llvm-config.h	
 }
