@@ -2,9 +2,9 @@
 # depends	: libmpc libmpfr libgmp zlib
 
 name=gcc
-version=12.20230421
+version=13.20230429
 release=1
-next=12.2.1
+next=13.1.1
 source="$name-$version.tar.xz::https://gcc.gnu.org/pub/gcc/snapshots/LATEST-${version%.*}/$name-${version%.*}-${version#*.}.tar.xz
 	c89 c99"
 
@@ -24,7 +24,7 @@ build() {
 
 	mkdir -v build
 	cd       build
-
+	
 	SED=sed \
 	../configure \
 		--prefix=/usr \
@@ -47,7 +47,6 @@ build() {
 		--enable-default-ssp \
 		--with-pkgversion="Venom Linux $version-$release" \
 		--with-system-zlib 
-
 	make
 	make  DESTDIR=$PKG install
 
