@@ -5,7 +5,7 @@ name=ffmpeg
 version=6.0
 release=2
 source="https://ffmpeg.org/releases/$name-$version.tar.xz
-	ffmpeg-${version}-chromium_method-1.patch::https://www.linuxfromscratch.org/patches/blfs/svn/ffmpeg-6.0-chromium_method-1.patch
+	ffmpeg-${version}-chromium_method-1.patch::https://www.linuxfromscratch.org/patches/blfs/svn/ffmpeg-${version}-chromium_method-1.patch
 	ffmpeg-x264-10bit.sh"
 
 build() {
