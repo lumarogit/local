@@ -1,4 +1,4 @@
-binutils-2.40-1
+binutils-2.40-2
 drwxr-xr-x root/root    etc/
 -rw-r--r-- root/root    etc/gprofng.rc
 drwxr-xr-x root/root    usr/
@@ -7,6 +7,7 @@ drwxr-xr-x root/root    usr/bin/
 -rwxr-xr-x root/root    usr/bin/ar
 -rwxr-xr-x root/root    usr/bin/as
 -rwxr-xr-x root/root    usr/bin/c++filt
+-rwxr-xr-x root/root    usr/bin/dwp
 -rwxr-xr-x root/root    usr/bin/elfedit
 -rwxr-xr-x root/root    usr/bin/gp-archive
 -rwxr-xr-x root/root    usr/bin/gp-collect-app
@@ -17,6 +18,7 @@ drwxr-xr-x root/root    usr/bin/
 -rwxr-xr-x root/root    usr/bin/gprofng
 -rwxr-xr-x root/root    usr/bin/ld
 hrwxr-xr-x root/root    usr/bin/ld.bfd link to usr/bin/ld
+-rwxr-xr-x root/root    usr/bin/ld.gold
 -rwxr-xr-x root/root    usr/bin/nm
 -rwxr-xr-x root/root    usr/bin/objcopy
 -rwxr-xr-x root/root    usr/bin/objdump
