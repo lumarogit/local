@@ -21,7 +21,6 @@ build() {
 	fi
 
 	venom-meson $name-$version build \
-		-Db_lto=false \
 		-Ddri3=enabled \
 		-Degl=enabled \
 		-Dgbm=enabled \
