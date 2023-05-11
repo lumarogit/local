@@ -46,7 +46,8 @@ build() {
 		--enable-default-pie \
 		--enable-default-ssp \
 		--with-pkgversion="Venom Linux $version-$release" \
-		--with-system-zlib 
+		--with-system-zlib \
+		--without-zstd
 	make
 	make  DESTDIR=$PKG install
 
