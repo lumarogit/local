@@ -16,7 +16,7 @@ build() {
 		OPTS="-Dgallium-va=enabled -Dgallium-drivers=swrast,r600" 
 	else
 		export CC=gcc CXX=g++
-		LLVM="-Dllvm=false -Dshared-llvm=false -Ddraw-use-llvm=false"
+		LLVM="-Dllvm=disabled -Dshared-llvm=disabled -Ddraw-use-llvm=false"
 		OPTS="-Dgallium-va=disabled -Dgallium-drivers=swrast,crocus"
 	fi
 
