@@ -2,12 +2,9 @@
 # depends	: llvm python3-mako elfutils bison flex libxext libxdamage libxshmfence libxxf86vm libxrandr libdrm libglvnd libva
 
 name=mesa
-version=23.0.3
-release=3
-source="https://mesa.freedesktop.org/archive/$name-$version.tar.xz
-	intel-fs-fix-scheduling-of-HALT-instructions.patch
-	egl-wayland-Fix-destruction-of-event-queue-with-prox.patch
-	vulkan-wsi-wayland-Fix-destruction-of-event-queue-wi.patch"
+version=23.1.0
+release=1
+source="https://mesa.freedesktop.org/archive/$name-$version.tar.xz"
 
 build() {
 
@@ -22,10 +19,6 @@ build() {
 		LLVM="-Dllvm=false -Dshared-llvm=false -Ddraw-use-llvm=false"
 		OPTS="-Dgallium-va=disabled -Dgallium-drivers=swrast,crocus"
 	fi
-
-	patch -d $name-$version -Np1 -i $SRC/intel-fs-fix-scheduling-of-HALT-instructions.patch
-	patch -d $name-$version -Np1 -i $SRC/egl-wayland-Fix-destruction-of-event-queue-with-prox.patch
-	patch -d $name-$version -Np1 -i $SRC/vulkan-wsi-wayland-Fix-destruction-of-event-queue-wi.patch
 
 	venom-meson $name-$version build \
 		-Db_lto=false \
