@@ -2,7 +2,7 @@
 # depends	: bc elfutils openssl yaml
 
 name=linux
-version=6.3.4
+version=6.3.5
 release=1
 source="https://cdn.kernel.org/pub/linux/kernel/v6.x/$name-${version%.0}.tar.xz
 	config-dell config-lenovo config-ryzen"
