@@ -10,5 +10,6 @@ build() {
 	make mrproper
 	make headers
 	find usr/include -type f ! -name '*.h' -delete
-	cp -rv usr/include $PKG/usr
+	mkdir -p $PKG/usr/include
+	cp -rv usr/include/* $PKG/usr/include
 }
