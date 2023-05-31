@@ -7,11 +7,8 @@ source="https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-${version%.0}.tar.xz"
 
 build() {
 	cd linux-${version%.0}
-
 	make mrproper
 	make headers
-	find usr/include -name '.*' -delete
-	rm usr/include/Makefile
-	mkdir -p $PKG/usr/include
-	cp -rv usr/include/* $PKG/usr/include
+	find usr/include -type f ! -name '*.h' -delete
+	cp -rv usr/include $PKG/usr
 }
