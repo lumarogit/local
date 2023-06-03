@@ -8,6 +8,7 @@ source="https://www.gnupg.org/ftp/gcrypt/gnutls/v${version%.*}/$name-${version}.
 
 build() {
 	cd $name-$version
+	./configure \
 		--prefix=/usr \
 		--with-default-trust-store-pkcs11="pkcs11:" \
 		--disable-guile \
