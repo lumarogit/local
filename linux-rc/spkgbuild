@@ -2,8 +2,8 @@
 # depends	: elfutils openssl yaml bc
 
 name=linux-rc
-version=6.3.0
-release=1
+version=6.4.0
+release=5
 source="https://git.kernel.org/torvalds/t/${name%-*}-${version%.*}-rc$release.tar.gz
 	config-dell config-lenovo config-ryzen"
 NO_STRIP=yes
