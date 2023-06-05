@@ -1,4 +1,4 @@
-linux-api-headers-6.3.5-1
+linux-api-headers-6.3.6-1
 drwxr-xr-x root/root    usr/
 drwxr-xr-x root/root    usr/include/
 drwxr-xr-x root/root    usr/include/asm-generic/
@@ -129,7 +129,6 @@ drwxr-xr-x root/root    usr/include/drm/
 -rw-r--r-- root/root    usr/include/drm/vgem_drm.h
 -rw-r--r-- root/root    usr/include/drm/virtgpu_drm.h
 -rw-r--r-- root/root    usr/include/drm/vmwgfx_drm.h
--rwxr-xr-x root/root    usr/include/headers_check.pl
 drwxr-xr-x root/root    usr/include/linux/
 -rw-r--r-- root/root    usr/include/linux/a.out.h
 -rw-r--r-- root/root    usr/include/linux/acct.h
