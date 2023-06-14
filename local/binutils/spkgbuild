@@ -1,0 +1,37 @@
+# description	: A linker, an assembler, and other tools for handling object files
+# depends	: flex elfutils
+
+name=binutils
+version=2.40
+release=3
+source="https://ftp.gnu.org/gnu/binutils/$name-$version.tar.bz2
+	CVE-2023-1972.patch"
+
+build() {
+	cd $name-$version
+
+	sed -i '/^SUBDIRS/s/doc//' bfd/Makefile.in
+
+	patch -Np1 -i $SRC/CVE-2023-1972.patch
+
+	mkdir -v build
+	cd       build
+
+	../configure \
+		--prefix=/usr \
+		--sysconfdir=/etc \
+		--disable-werror \
+		--disable-nls \
+		--disable-multilib \
+		--enable-gold \
+		--enable-ld=default \
+		--enable-lto \
+		--enable-plugins \
+		--enable-shared \
+		--with-system-zlib \
+		--with-lib-path=/usr/lib:/lib
+
+	make tooldir=/usr
+	make tooldir=/usr DESTDIR=$PKG install
+
+}

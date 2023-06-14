@@ -1,0 +1,68 @@
+# description	: The GNU compiler collection, which includes the C and C++ compilers
+# depends	: libmpc libmpfr libgmp zlib
+
+name=gcc
+version=13.20230429
+release=1
+next=13.1.1
+source="$name-$version.tar.xz::https://gcc.gnu.org/pub/gcc/snapshots/LATEST-${version%.*}/$name-${version%.*}-${version#*.}.tar.xz
+	c89 c99"
+
+bsdtar() {
+	tar $@
+}
+
+build() {
+	cd $name-${version%.*}-${version#*.}
+
+	# /lib is 64bit libraries directory
+	sed -e '/m64=/s/lib64/lib/' \
+	    -i.orig gcc/config/i386/t-linux64
+
+	# Do not run fixincludes
+	sed -i 's@\./fixinc\.sh@-c true@' gcc/Makefile.in
+
+	mkdir -v build
+	cd       build
+	
+	SED=sed \
+	../configure \
+		--prefix=/usr \
+		--libexecdir=/usr/lib \
+		--disable-bootstrap \
+		--disable-libmpx \
+		--disable-nls \
+		--disable-multilib \
+		--disable-decimal-float \
+		--disable-libatomic \
+		--disable-libgomp \
+		--disable-libssp \
+		--disable-libvtv \
+		--enable-clocale=gnu \
+		--enable-languages=c,c++,lto \
+		--enable-lto \
+		--enable-threads=posix \
+		--enable-__cxa_atexit \
+		--enable-default-pie \
+		--enable-default-ssp \
+		--with-pkgversion="Venom Linux $version-$release" \
+		--with-system-zlib 
+	make
+	make  DESTDIR=$PKG install
+
+	mkdir $PKG/lib
+	ln -sv ../usr/bin/cpp $PKG/lib/cpp
+	ln -sv gcc $PKG/usr/bin/cc
+
+	install -v -dm755 $PKG/usr/lib/bfd-plugins
+	ln -sfv ../../lib/gcc/$(gcc -dumpmachine)/$next/liblto_plugin.so \
+	        $PKG/usr/lib/bfd-plugins/
+
+	mkdir -pv $PKG/usr/share/gdb/auto-load/usr/lib
+	mv -v $PKG/usr/lib/*gdb.py $PKG/usr/share/gdb/auto-load/usr/lib
+
+	install -Dm755 $SRC/c89 $PKG/usr/bin/c89
+	install -Dm755 $SRC/c99 $PKG/usr/bin/c99
+
+	rm -r $PKG/usr/share/$name-$next
+}

@@ -1,0 +1,22 @@
+linux-firmware-amd-20230515-1
+drwxr-xr-x root/root    lib/
+drwxr-xr-x root/root    lib/firmware/
+drwxr-xr-x root/root    lib/firmware/amd-ucode/
+-rw-r--r-- root/root    lib/firmware/amd-ucode/microcode_amd_fam19h.bin
+-rw-r--r-- root/root    lib/firmware/amd-ucode/microcode_amd_fam19h.bin.asc
+drwxr-xr-x root/root    lib/firmware/amd/
+-rw-r--r-- root/root    lib/firmware/amd/amd_sev_fam19h_model0xh.sbin
+drwxr-xr-x root/root    lib/firmware/amdgpu/
+-rw-r--r-- root/root    lib/firmware/amdgpu/green_sardine_asd.bin
+-rw-r--r-- root/root    lib/firmware/amdgpu/green_sardine_ce.bin
+-rw-r--r-- root/root    lib/firmware/amdgpu/green_sardine_dmcub.bin
+-rw-r--r-- root/root    lib/firmware/amdgpu/green_sardine_me.bin
+-rw-r--r-- root/root    lib/firmware/amdgpu/green_sardine_mec.bin
+-rw-r--r-- root/root    lib/firmware/amdgpu/green_sardine_mec2.bin
+-rw-r--r-- root/root    lib/firmware/amdgpu/green_sardine_pfp.bin
+-rw-r--r-- root/root    lib/firmware/amdgpu/green_sardine_rlc.bin
+-rw-r--r-- root/root    lib/firmware/amdgpu/green_sardine_sdma.bin
+-rw-r--r-- root/root    lib/firmware/amdgpu/green_sardine_ta.bin
+-rw-r--r-- root/root    lib/firmware/amdgpu/green_sardine_vcn.bin
+drwxr-xr-x root/root    lib/firmware/rtl_nic/
+-rw-r--r-- root/root    lib/firmware/rtl_nic/rtl8168h-2.fw

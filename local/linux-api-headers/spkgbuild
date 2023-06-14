@@ -1,0 +1,15 @@
+# description	: Expose the kernel's API for use by Glibc
+
+name=linux-api-headers
+version=6.3.8
+release=1
+source="https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-${version%.0}.tar.xz"
+
+build() {
+	cd linux-${version%.0}
+	make mrproper
+	make headers
+	find usr/include -type f ! -name '*.h' -delete
+	mkdir -p $PKG/usr/include
+	cp -rv usr/include/* $PKG/usr/include
+}
