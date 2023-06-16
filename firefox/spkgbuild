@@ -5,7 +5,7 @@
 
 name=firefox
 version=114.0.1
-release=2
+release=3
 source="$name-$version.tar.xz::https://archive.mozilla.org/pub/firefox/releases/$version/source/firefox-$version.source.tar.xz 
 	$name.desktop"
 
@@ -24,18 +24,21 @@ mk_add_options MOZ_OBJDIR=@TOPSRCDIR@/obj
 unset MOZ_TELEMETRY_REPORTING
 ac_add_options --prefix=/usr
 ac_add_options --libdir=/usr/lib
+ac_add_options --disable-bootstrap
+ac_add_options --disable-cargo-incremental
 ac_add_options --disable-crashreporter
+ac_add_options --disable-debug
 ac_add_options --disable-debug-symbols
 ac_add_options --disable-install-strip
 ac_add_options --disable-elf-hack
+ac_add_options --disable-jemalloc
 ac_add_options --disable-necko-wifi
-ac_add_options --disable-parental-controls
 ac_add_options --disable-strip 
 ac_add_options --disable-tests
 ac_add_options --disable-updater
 ac_add_options --enable-application=browser
 ac_add_options --enable-audio-backends=alsa
-ac_add_options --with-system-av1
+ac_add_options --enable-av1
 ac_add_options --enable-linker=lld
 ac_add_options --enable-lto=thin
 ac_add_options --enable-official-branding
@@ -71,7 +74,8 @@ EOF
   # ccache
   scratch isinstalled ccache && echo 'ac_add_options --enable-ccache' >> .mozconfig
 
-  export CC=clang CXX=clang++ AR=llvm-ar NM=llvm-nm RANLIB=llvm-ranlib RUSTFLAGS="-C opt-level=2 $RUSTFLAGS"
+   export CC=clang CXX=clang++ AR=llvm-ar NM=llvm-nm RANLIB=llvm-ranlib RUSTFLAGS="-C opt-level=2 $RUSTFLAGS"
+  #export CC=gcc CXX=g++ RUSTFLAGS="-C opt-level=2 $RUSTFLAGS"
   export MOZBUILD_STATE_PATH="$SRC"/mozbuild
   
   # Disable notification when build system has finished
@@ -81,6 +85,9 @@ EOF
   export SHELL='/bin/sh'
   export PIP_NETWORK_INSTALL_RESTRICTED_VIRTUALENVS=mach
   export MACH_BUILD_PYTHON_NATIVE_PACKAGE_SOURCE=pip
+
+  # LTO needs more open files
+  ulimit -n 4096
  
   ./mach build
   DESTDIR=$PKG ./mach install
