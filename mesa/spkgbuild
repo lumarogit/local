@@ -35,7 +35,7 @@ build() {
 		-Dplatforms=x11 \
 		-Dshared-glapi=enabled \
 		-Dvulkan-drivers='' \
-		-Dglvnd=enabled \
+		-Dglvnd=true \
                 -Dzstd=disabled \
 		-Dvideo-codecs=vc1dec,h264dec,h264enc,h265dec,h265enc \
 		-Dvalgrind=disabled $LLVM $OPTS
