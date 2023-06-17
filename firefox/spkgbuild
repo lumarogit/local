@@ -25,30 +25,33 @@ unset MOZ_TELEMETRY_REPORTING
 ac_add_options --prefix=/usr
 ac_add_options --libdir=/usr/lib
 ac_add_options --disable-bootstrap
-ac_add_options --disable-cargo-incremental
 ac_add_options --disable-crashreporter
 ac_add_options --disable-debug
 ac_add_options --disable-debug-symbols
-ac_add_options --disable-install-strip
 ac_add_options --disable-elf-hack
-ac_add_options --disable-jemalloc
+ac_add_options --disable-install-strip
 ac_add_options --disable-necko-wifi
-ac_add_options --disable-strip 
+ac_add_options --disable-parental-controls
+ac_add_options --disable-strip
 ac_add_options --disable-tests
 ac_add_options --disable-updater
 ac_add_options --enable-application=browser
 ac_add_options --enable-audio-backends=alsa
 ac_add_options --enable-av1
+ac_add_options --enable-dbus
+ac_add_options --enable-ffmpeg
+ac_add_options --enable-hardening
 ac_add_options --enable-linker=lld
 ac_add_options --enable-lto=thin
 ac_add_options --enable-official-branding
-ac_add_options --enable-optimize
+ac_add_options --enable-optimize="$CFLAGS -O2"
 ac_add_options --enable-release
+ac_add_options --enable-update-channel=release
 ac_add_options --enable-rust-simd
 ac_add_options --enable-sandbox
-ac_add_options --enable-system-ffi
 ac_add_options --enable-system-pixman
 ac_add_options --with-distribution-id=org.venomlinux
+ac_add_options --with-system-ffi
 ac_add_options --with-system-icu
 ac_add_options --with-system-jpeg
 ac_add_options --with-system-libevent
@@ -74,20 +77,21 @@ EOF
   # ccache
   scratch isinstalled ccache && echo 'ac_add_options --enable-ccache' >> .mozconfig
 
-   export CC=clang CXX=clang++ AR=llvm-ar NM=llvm-nm RANLIB=llvm-ranlib RUSTFLAGS="-C opt-level=2 $RUSTFLAGS"
-  #export CC=gcc CXX=g++ RUSTFLAGS="-C opt-level=2 $RUSTFLAGS"
-  export MOZBUILD_STATE_PATH="$SRC"/mozbuild
-  
-  # Disable notification when build system has finished
+  # Build configuration
+  export CC=clang CXX=clang++ AR=llvm-ar NM=llvm-nm RANLIB=llvm-ranlib RUSTFLAGS="-C opt-level=2 $RUSTFLAGS"
+  export CFLAGS="$CFLAGS -w" CXXFLAGS="$CXXFLAGS -w"
   export MOZ_NOSPAM=1
+  export BUILD_OFFICIAL=1
+  export MOZILLA_OFFICIAL=1
+  export MOZ_APP_REMOTINGNAME=firefox
+  export MOZBUILD_STATE_PATH="$SRC"/mozbuild
+  unset CARGO_PROFILE_RELEASE_OPT_LEVEL
+  unset CARGO_PROFILE_RELEASE_LTO
 
-  # Python 
+  # Python configuration
   export SHELL='/bin/sh'
   export PIP_NETWORK_INSTALL_RESTRICTED_VIRTUALENVS=mach
   export MACH_BUILD_PYTHON_NATIVE_PACKAGE_SOURCE=pip
-
-  # LTO needs more open files
-  ulimit -n 4096
  
   ./mach build
   DESTDIR=$PKG ./mach install
@@ -95,7 +99,7 @@ EOF
   unset MACH_BUILD_PYTHON_NATIVE_PACKAGE_SOURCE MOZBUILD_STATE_PATH
 
   # Vendor
-  local vendorjs="$PKG/usr/lib/$name/browser/defaults/preferences/vendor.js"
+  local vendorjs="$PKG/usr/lib/º$name/browser/defaults/preferences/vendor.js"
   install -Dvm644 /dev/stdin "$vendorjs" <<END
 // Use LANG environment variable to choose locale
 pref("intl.locale.requested", "");

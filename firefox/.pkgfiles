@@ -6,6 +6,11 @@ drwxr-xr-x root/root    usr/
 drwxr-xr-x root/root    usr/bin/
 lrwxrwxrwx root/root    usr/bin/firefox -> /usr/lib/firefox/firefox
 drwxr-xr-x root/root    usr/lib/
+drwxr-xr-x root/root    usr/lib/\302\272firefox/
+drwxr-xr-x root/root    usr/lib/\302\272firefox/browser/
+drwxr-xr-x root/root    usr/lib/\302\272firefox/browser/defaults/
+drwxr-xr-x root/root    usr/lib/\302\272firefox/browser/defaults/preferences/
+-rw-r--r-- root/root    usr/lib/\302\272firefox/browser/defaults/preferences/vendor.js
 drwxr-xr-x root/root    usr/lib/firefox/
 -rw-r--r-- root/root    usr/lib/firefox/application.ini
 drwxr-xr-x root/root    usr/lib/firefox/browser/
@@ -17,9 +22,6 @@ drwxr-xr-x root/root    usr/lib/firefox/browser/chrome/icons/default/
 -rw-r--r-- root/root    usr/lib/firefox/browser/chrome/icons/default/default32.png
 -rw-r--r-- root/root    usr/lib/firefox/browser/chrome/icons/default/default48.png
 -rw-r--r-- root/root    usr/lib/firefox/browser/chrome/icons/default/default64.png
-drwxr-xr-x root/root    usr/lib/firefox/browser/defaults/
-drwxr-xr-x root/root    usr/lib/firefox/browser/defaults/preferences/
--rw-r--r-- root/root    usr/lib/firefox/browser/defaults/preferences/vendor.js
 -rw-r--r-- root/root    usr/lib/firefox/browser/omni.ja
 drwxr-xr-x root/root    usr/lib/firefox/defaults/
 drwxr-xr-x root/root    usr/lib/firefox/defaults/pref/
