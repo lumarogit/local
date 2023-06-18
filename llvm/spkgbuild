@@ -12,9 +12,9 @@ noextract="cmake-${version}.src.tar.xz third-party-${version}.src.tar.xz"
 
 build() {
 	if scratch isinstalled xf86-video-amdgpu || scratch isinstalled xf86-video-ati; then
-		TARGETS="AMDGPU;X86"
+		TARGETS="host;AMDGPU"
 	else
-		TARGETS="X86"                                                                                                                                         
+		TARGETS="host"                                                                                                                                         
 	fi
 
 	cd $name-$version.src
@@ -38,7 +38,6 @@ build() {
 		-D LLVM_BINUTILS_INCDIR=/usr/include \
 		-D LLVM_BUILD_LLVM_DYLIB=ON \
 		-D LLVM_LINK_LLVM_DYLIB=ON \
-		-D LLVM_PARALLEL_COMPILE_JOBS="$(echo "$MAKEFLAGS" | grep -o '[0-9]*')" \
 		-D LLVM_INCLUDE_EXAMPLES=OFF \
 		-D LLVM_INCLUDE_TESTS=OFF \
 		-D LLVM_ENABLE_FFI=ON \
