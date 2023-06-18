@@ -15,30 +15,30 @@ build() {
 		OPTS="-Dgallium-va=enabled -Dgallium-drivers=swrast,radeonsi"
 	elif scratch isinstalled xf86-video-ati ; then
 		OPTS="-Dgallium-va=enabled -Dgallium-drivers=swrast,r600" 
-	else
+	elif scratch isinstalled xf86-video-intel ; then
 		OPTS="-Dgallium-va=disabled -Dgallium-drivers=swrast,crocus"
 	fi
 
 	venom-meson $name-$version build \
 		-Ddri3=enabled \
 		-Degl=enabled \
-		-Dgbm=enabled \
-		-Dgles1=disabled \
-		-Dgles2=enabled \
-		-Dglx=disabled \
-                -Dosmesa=false \
                 -Dgallium-xa=disabled \
                 -Dgallium-omx=disabled \
                 -Dgallium-vdpau=disabled  \
                 -Dgallium-opencl=disabled  \
                 -Dgallium-nine=false \
+		-Dgbm=enabled \
+		-Dgles1=disabled \
+		-Dgles2=enabled \
+		-Dglx=disabled \
+		-Dglvnd=true \                
+		-Dosmesa=false \
 		-Dplatforms=x11 \
 		-Dshared-glapi=enabled \
-		-Dvulkan-drivers='' \
-		-Dglvnd=true \
-                -Dzstd=disabled \
+		-Dvalgrind=disabled \
 		-Dvideo-codecs=vc1dec,h264dec,h264enc,h265dec,h265enc \
-		-Dvalgrind=disabled $LLVM $OPTS
+		-Dvulkan-drivers='' \
+		-Dzstd=disabled $OPTS
 	meson compile -C build
 	DESTDIR=$PKG meson install --no-rebuild -C build
 
