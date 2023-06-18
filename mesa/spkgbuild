@@ -9,7 +9,7 @@ source="https://mesa.freedesktop.org/archive/$name-$version.tar.xz"
 
 build() {
 
-	LLVM="-Dllvm=true -Dshared-llvm=true -Ddraw-use-llvm=true"
+	LLVM="-Dllvm=enabled -Dshared-llvm=enabled -Ddraw-use-llvm=true"
 
 	if scratch isinstalled xf86-video-amdgpu ; then
 		OPTS="-Dgallium-va=enabled -Dgallium-drivers=swrast,radeonsi"
