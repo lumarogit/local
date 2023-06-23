@@ -84,18 +84,20 @@ EOF
   export CFLAGS="$CFLAGS -w" CXXFLAGS="$CXXFLAGS -w" # Disable warnings
   export RUSTFLAGS="$RUSTFLAGS -C opt-level=2"
   export MOZ_NOSPAM=1
-  export BUILD_OFFICIAL=1
-  export MOZILLA_OFFICIAL=1
-  export MOZ_APP_REMOTINGNAME=firefox
   export MOZBUILD_STATE_PATH="$SRC/mozbuild"
-  unset CARGO_PROFILE_RELEASE_OPT_LEVEL
-  unset CARGO_PROFILE_RELEASE_LTO
-
+  
   # Python configuration
   export SHELL="/bin/sh"
   export PIP_NETWORK_INSTALL_RESTRICTED_VIRTUALENVS=mach
   export MACH_BUILD_PYTHON_NATIVE_PACKAGE_SOURCE=pip
- 
+
+  #Show flags set at the beginning
+  echo "Current BINDGEN_CFLAGS:\t${BINDGEN_CFLAGS:-no value set}"
+  echo "Current CFLAGS:\t\t${CFLAGS:-no value set}"
+  echo "Current CXXFLAGS:\t\t${CXXFLAGS:-no value set}"
+  echo "Current LDFLAGS:\t\t${LDFLAGS:-no value set}"
+  echo "Current RUSTFLAGS:\t\t${RUSTFLAGS:-no value set}"
+
   ./mach build
   DESTDIR=$PKG ./mach install
 
