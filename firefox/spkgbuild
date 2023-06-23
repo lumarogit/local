@@ -5,7 +5,7 @@
 
 name=firefox
 version=114.0.2
-release=1
+release=3
 source="$name-$version.tar.xz::https://archive.mozilla.org/pub/firefox/releases/$version/source/firefox-$version.source.tar.xz 
 	$name.desktop"
 
@@ -29,27 +29,30 @@ ac_add_options --disable-crashreporter
 ac_add_options --disable-debug
 ac_add_options --disable-debug-symbols
 ac_add_options --disable-elf-hack
+ac_add_options --disable-gpsd
 ac_add_options --disable-install-strip
 ac_add_options --disable-necko-wifi
 ac_add_options --disable-parental-controls
+ac_add_options --disable-real-time-tracing
 ac_add_options --disable-strip
 ac_add_options --disable-tests
 ac_add_options --disable-updater
+ac_add_options --disable-wmf
 ac_add_options --enable-application=browser
 ac_add_options --enable-audio-backends=alsa
 ac_add_options --enable-av1
 ac_add_options --enable-dbus
 ac_add_options --enable-ffmpeg
 ac_add_options --enable-hardening
-ac_add_options --enable-linker=lld
-ac_add_options --enable-lto=thin
+ac_add_options --enable-linker=bfd
+ac_add_options --enable-lto=full
 ac_add_options --enable-official-branding
 ac_add_options --enable-optimize="$CFLAGS -O2"
 ac_add_options --enable-release
-ac_add_options --enable-update-channel=release
 ac_add_options --enable-rust-simd
 ac_add_options --enable-sandbox
 ac_add_options --enable-system-pixman
+ac_add_options --enable-update-channel=release
 ac_add_options --with-distribution-id=org.venomlinux
 ac_add_options --with-system-ffi
 ac_add_options --with-system-icu
@@ -78,22 +81,24 @@ EOF
   scratch isinstalled ccache && echo 'ac_add_options --enable-ccache' >> .mozconfig
 
   # Build configuration
-  export CC=clang CXX=clang++ AR=llvm-ar NM=llvm-nm RANLIB=llvm-ranlib
+  export CC=gcc CXX=g++
   export CFLAGS="$CFLAGS -w" CXXFLAGS="$CXXFLAGS -w" # Disable warnings
-  export RUSTFLAGS="-C opt-level=2 $RUSTFLAGS"
+  export RUSTFLAGS="$RUSTFLAGS -C opt-level=2"
   export MOZ_NOSPAM=1
-  export BUILD_OFFICIAL=1
-  export MOZILLA_OFFICIAL=1
-  export MOZ_APP_REMOTINGNAME=firefox
   export MOZBUILD_STATE_PATH="$SRC/mozbuild"
-  unset CARGO_PROFILE_RELEASE_OPT_LEVEL
-  unset CARGO_PROFILE_RELEASE_LTO
-
+  
   # Python configuration
-  export SHELL='/bin/sh'
+  export SHELL="/bin/sh"
   export PIP_NETWORK_INSTALL_RESTRICTED_VIRTUALENVS=mach
   export MACH_BUILD_PYTHON_NATIVE_PACKAGE_SOURCE=pip
- 
+
+  # Show flags set at the beginning
+  echo "Current BINDGEN_CFLAGS:\t${BINDGEN_CFLAGS:-no value set}"
+  echo "Current CFLAGS:\t\t${CFLAGS:-no value set}"
+  echo "Current CXXFLAGS:\t\t${CXXFLAGS:-no value set}"
+  echo "Current LDFLAGS:\t\t${LDFLAGS:-no value set}"
+  echo "Current RUSTFLAGS:\t\t${RUSTFLAGS:-no value set}"
+
   ./mach build
   DESTDIR=$PKG ./mach install
 
