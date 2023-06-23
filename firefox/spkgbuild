@@ -49,7 +49,6 @@ ac_add_options --enable-lto=full
 ac_add_options --enable-official-branding
 ac_add_options --enable-optimize="$CFLAGS -O2"
 ac_add_options --enable-release
-ac_add_options --enable-update-channel=release
 ac_add_options --enable-rust-simd
 ac_add_options --enable-sandbox
 ac_add_options --enable-system-pixman
@@ -83,7 +82,7 @@ EOF
   # Build configuration
   export CC=gcc CXX=g++
   export CFLAGS="$CFLAGS -w" CXXFLAGS="$CXXFLAGS -w" # Disable warnings
-  export RUSTFLAGS="-C opt-level=2 $RUSTFLAGS"
+  export RUSTFLAGS="$RUSTFLAGS -C opt-level=2"
   export MOZ_NOSPAM=1
   export BUILD_OFFICIAL=1
   export MOZILLA_OFFICIAL=1
@@ -93,7 +92,7 @@ EOF
   unset CARGO_PROFILE_RELEASE_LTO
 
   # Python configuration
-  export SHELL='/bin/sh'
+  export SHELL="/bin/sh"
   export PIP_NETWORK_INSTALL_RESTRICTED_VIRTUALENVS=mach
   export MACH_BUILD_PYTHON_NATIVE_PACKAGE_SOURCE=pip
  
