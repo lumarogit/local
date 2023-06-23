@@ -91,7 +91,7 @@ EOF
   export PIP_NETWORK_INSTALL_RESTRICTED_VIRTUALENVS=mach
   export MACH_BUILD_PYTHON_NATIVE_PACKAGE_SOURCE=pip
 
-  #Show flags set at the beginning
+  # Show flags set at the beginning
   echo "Current BINDGEN_CFLAGS:\t${BINDGEN_CFLAGS:-no value set}"
   echo "Current CFLAGS:\t\t${CFLAGS:-no value set}"
   echo "Current CXXFLAGS:\t\t${CXXFLAGS:-no value set}"
