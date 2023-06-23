@@ -29,7 +29,7 @@ ac_add_options --disable-crashreporter
 ac_add_options --disable-debug
 ac_add_options --disable-debug-symbols
 ac_add_options --disable-elf-hack
-ac_add_options --disable-eme
+ac_add_options --disable-gpsd
 ac_add_options --disable-install-strip
 ac_add_options --disable-necko-wifi
 ac_add_options --disable-parental-controls
