@@ -1,7 +1,7 @@
 # description  : Firmware files for Linux
 
 name=linux-firmware-radeon
-version=20230515
+version=20230625
 release=1
 baseurl=https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/plain
 source="${baseurl}/radeon/CYPRESS_uvd.bin
