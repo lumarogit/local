@@ -35,7 +35,7 @@ build() {
 		-D xvfb=false \
 		-D xwin=false
 	meson compile -C build
-	DESTDIR=$PKG meson install -C build
+	DESTDIR=$PKG meson install --no-rebuild -C build
 
 	install -m 755 -d $PKG/etc/X11/xorg.conf.d
 	echo "needs_root_rights = yes" >> $PKG/etc/X11/Xwrapper.config
