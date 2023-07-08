@@ -6,25 +6,29 @@
 
 NAME="SEATD daemon"
 PROG=/usr/bin/seatd
-OPTS="-g seatd"
+OPTS="-g video"
+PIDFILE=/run/seatd.pid
 
 case $1 in
-start)
-  start_daemon  $PROG  $OPTS
-  ;;
-stop)
-  stop_daemon  $PROG
-  ;;
-restart)
-  $0 stop
-  $0 start
-  ;;
-status)
-  status_daemon  $PROG
-  ;;
-*)
-  echo "usage: $0 [start|stop|restart|status]"
-  ;;
+  start)
+    msg "Starting $NAME..."
+    start_daemon  $PROG  $OPTS
+    ;;
+  stop)
+    msg "Stopping $NAME..."
+    stop_daemon  $PROG
+    ;;
+  restart)
+    $0 stop
+    sleep 1
+    $0 start
+    ;;
+  status)
+    status_daemon  $PROG
+    ;;
+  *)
+    echo "Usage: $0 [start|stop|restart|status]"
+    ;;
 esac
 
 # End of file
