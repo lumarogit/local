@@ -1,6 +1,6 @@
 # description	: Seat management daemon and library 
 # homepage	: https://git.sr.ht/~kennylevinsen/seatd
-# depends	: meson ninja scdoc
+# depends	: meson ninja
 
 name=seatd
 version=0.7.0
@@ -13,7 +13,7 @@ build() {
     venom-meson $name-$version build \
           -Dexamples=disabled \
           -Dserver=enabled \
-          -Dlibseat-logind=auto \
+          -Dlibseat-logind=disabled \
 	  -Dlibseat-seatd=enabled \
 	  -Dlibseat-builtin=enabled \
           -Dman-pages=disabled 
