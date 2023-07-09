@@ -10,7 +10,7 @@ source="$name-$version.tar.gz::https://codeberg.org/dnkl/fcft/archive/$version.t
 build() {
     venom-meson $name build \
     	-Dgrapheme-shaping=enabled \
-		-Drun-shaping=enabled
+	-Drun-shaping=enabled
     meson compile -C build
     DESTDIR=$PKG meson install --no-rebuild -C build
     
