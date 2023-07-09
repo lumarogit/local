@@ -5,6 +5,7 @@
 . /etc/rc.subr
 
 NAME="SEATD daemon"
+export LIBSEAT_BACKEND=seatd
 PROG=/usr/bin/seatd
 OPTS="-g video"
 PIDFILE=/run/seatd.pid
