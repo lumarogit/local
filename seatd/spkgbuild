@@ -4,17 +4,13 @@
 
 name=seatd
 version=0.7.0
-release=2
+release=3
 source="https://git.sr.ht/~kennylevinsen/seatd/archive/$version.tar.gz
 	rc.seatd
 	run.seatd"
 
 build() {
     venom-meson $name-$version build \
-		-Dexamples=disabled \
-          	-Dserver=enabled \
-          	-Dlibseat-logind=disabled \
-	  	-Dlibseat-seatd=enabled \
 	  	-Dlibseat-builtin=enabled \
           	-Dman-pages=disabled 
 	meson compile -C build
