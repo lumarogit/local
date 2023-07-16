@@ -1,29 +1,29 @@
-gcc-13.20230708-1
+gcc-13.20230715-1
 drwxr-xr-x root/root    lib/
 lrwxrwxrwx root/root    lib/cpp -> ../usr/bin/cpp
 drwxr-xr-x root/root    usr/
 drwxr-xr-x root/root    usr/bin/
-hrwxr-xr-x root/root    usr/bin/c++ link to usr/bin/x86_64-pc-linux-gnu-c++
+hrwxr-xr-x root/root    usr/bin/c++ link to usr/bin/g++
 -rwxr-xr-x root/root    usr/bin/c89
 -rwxr-xr-x root/root    usr/bin/c99
 lrwxrwxrwx root/root    usr/bin/cc -> gcc
 -rwxr-xr-x root/root    usr/bin/cpp
-hrwxr-xr-x root/root    usr/bin/g++ link to usr/bin/x86_64-pc-linux-gnu-c++
+-rwxr-xr-x root/root    usr/bin/g++
 hrwxr-xr-x root/root    usr/bin/gcc link to usr/bin/x86_64-pc-linux-gnu-gcc
 hrwxr-xr-x root/root    usr/bin/gcc-ar link to usr/bin/x86_64-pc-linux-gnu-gcc-ar
 hrwxr-xr-x root/root    usr/bin/gcc-nm link to usr/bin/x86_64-pc-linux-gnu-gcc-nm
-hrwxr-xr-x root/root    usr/bin/gcc-ranlib link to usr/bin/x86_64-pc-linux-gnu-gcc-ranlib
+-rwxr-xr-x root/root    usr/bin/gcc-ranlib
 -rwxr-xr-x root/root    usr/bin/gcov
 -rwxr-xr-x root/root    usr/bin/gcov-dump
 -rwxr-xr-x root/root    usr/bin/gcov-tool
 -rwxr-xr-x root/root    usr/bin/lto-dump
--rwxr-xr-x root/root    usr/bin/x86_64-pc-linux-gnu-c++
-hrwxr-xr-x root/root    usr/bin/x86_64-pc-linux-gnu-g++ link to usr/bin/x86_64-pc-linux-gnu-c++
+hrwxr-xr-x root/root    usr/bin/x86_64-pc-linux-gnu-c++ link to usr/bin/g++
+hrwxr-xr-x root/root    usr/bin/x86_64-pc-linux-gnu-g++ link to usr/bin/g++
 -rwxr-xr-x root/root    usr/bin/x86_64-pc-linux-gnu-gcc
 hrwxr-xr-x root/root    usr/bin/x86_64-pc-linux-gnu-gcc-13.1.1 link to usr/bin/x86_64-pc-linux-gnu-gcc
 -rwxr-xr-x root/root    usr/bin/x86_64-pc-linux-gnu-gcc-ar
 -rwxr-xr-x root/root    usr/bin/x86_64-pc-linux-gnu-gcc-nm
--rwxr-xr-x root/root    usr/bin/x86_64-pc-linux-gnu-gcc-ranlib
+hrwxr-xr-x root/root    usr/bin/x86_64-pc-linux-gnu-gcc-ranlib link to usr/bin/gcc-ranlib
 drwxr-xr-x root/root    usr/include/
 drwxr-xr-x root/root    usr/include/c++/
 drwxr-xr-x root/root    usr/include/c++/13.1.1/
