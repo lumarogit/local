@@ -1,5 +1,5 @@
 # description	: OpenGL compatible 3D graphics library
-# depends	: llvm python3-mako elfutils bison flex libdrm libglvnd libva
+# depends	: llvm python3-mako elfutils bison flex libdrm libva
 
 ##olddepends	: llvm python3-mako elfutils bison flex libxext libxdamage
 ##olddepends	: libxshmfence libxxf86vm libxrandr libdrm libglvnd libva
@@ -39,7 +39,7 @@ build() {
                 -Dgallium-nine=false \
 		-Dshared-glapi=enabled \
 		-Dvulkan-drivers='' \
-		-Dglvnd=true \
+		-Dglvnd=false \
                 -Dzstd=disabled \
 		-Dvideo-codecs=vc1dec,h264dec,h264enc,h265dec,h265enc \
 		-Dvalgrind=disabled
