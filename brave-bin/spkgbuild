@@ -1,6 +1,6 @@
 # description	: Brave browser (binary)
 # homepage	: https://brave.com/
-# depends	: alsa-lib cups gtk3 libxscrnsaver nss 
+# depends	: alsa-lib cups gtk3 nss 
 
 name=brave-bin
 version=1.52.130
