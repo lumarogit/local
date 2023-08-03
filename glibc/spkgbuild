@@ -25,6 +25,8 @@ build() {
 		--disable-crypt \
 		--disable-profile \
 		--disable-werror \
+		--enable-bind-now \
+		--enable-crypt \
 		--enable-kernel=4.14 \
 		--enable-stack-protector=strong \
 		--enable-multi-arch \
