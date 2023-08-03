@@ -22,6 +22,7 @@ build() {
 	_configure_flag="
 		--prefix=/usr \
 		--with-headers=/usr/include \
+		--disable-crypt \
 		--disable-profile \
 		--disable-werror \
 		--enable-kernel=4.14 \
