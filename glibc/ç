@@ -24,6 +24,7 @@ build() {
 		--with-headers=/usr/include \
 		--disable-profile \
 		--disable-werror \
+		--enable-bind-now \
 		--enable-kernel=4.14 \
 		--enable-stack-protector=strong \
 		--enable-multi-arch \
