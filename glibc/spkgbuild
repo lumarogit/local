@@ -36,7 +36,7 @@ build() {
 		--enable-stack-protector=strong \
 		--enable-multi-arch \
 		libc_cv_slibdir=/lib \
-		libc_cv_include_x86_isa_level=no"
+		libc_cv_include_x86_isa_level=no
 	make
 	sed '/test-installation/s@$(PERL)@echo not running@' -i ../Makefile
 	make install_root=$PKG install
