@@ -1,5 +1,6 @@
 # description	: Programs for handling passwords in a secure way
-# depends	: acl libbsd
+# homepage	: https://github.com/shadow-maint/shadow
+# depends	: acl
 
 name=shadow
 version=4.14.0
@@ -22,6 +23,7 @@ build() {
 		--disable-logind \
 		--disable-nsl \
 		--disable-static \
+		--without-libbsd \
 		--without-libpam \
 		--with-group-name-max-length=32 
 
