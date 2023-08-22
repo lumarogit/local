@@ -9,7 +9,7 @@ d2a3780322de14eed98407c5c7f10985  green_sardine_ce.bin
 86c958f1a04f34a1af7018f3caa12f72  green_sardine_rlc.bin
 777c2b0e35616111144021ccf0808f5c  green_sardine_sdma.bin
 c972d523beeb08002cd1bbaac3a7bba8  green_sardine_ta.bin
-47dc282fe2741e056caeadb2defb5f91  green_sardine_vcn.bin
-a4f8ad2f6d8557dc94f32f48d6b064ba  microcode_amd_fam19h.bin
-3efae2635f873b881ad82b789766c301  microcode_amd_fam19h.bin.asc
+81dde1b7760f162ebe6a82fe305dd080  green_sardine_vcn.bin
+f7242e506831e27817441ebd18c651ad  microcode_amd_fam19h.bin
+9a29fb6bf88f62ebc374164cd44f5513  microcode_amd_fam19h.bin.asc
 11b4899d299ed119ba41099739145f69  rtl8168h-2.fw
