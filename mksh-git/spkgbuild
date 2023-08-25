@@ -3,7 +3,7 @@
 
 name=mksh-git
 version=20230823
-_commit=52e68b847c2763cba9472d89940656b71aad7374
+_commit=80ce73f48c4b430f1c9d6bb21bd855562c58659e
 release=1
 backup="etc/mkshrc"
 source="$name-$version.tar.gz::https://github.com/MirBSD/mksh/archive/${_commit}.tar.gz"
