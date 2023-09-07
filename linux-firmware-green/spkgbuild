@@ -20,9 +20,7 @@ source="${baseurl}/amdgpu/${agpu}asd.bin
 
 build() {
 	# create $PKG dirs
-	for i in amd amdgpu; do
-		mkdir -pv $PKG/lib/firmware/${i}
-	done
+	mkdir -pv $PKG/lib/firmware/amdgpu
   
 	# copy blobs in $PKG
 	cp ${agpu}* $PKG/lib/firmware/amdgpu
