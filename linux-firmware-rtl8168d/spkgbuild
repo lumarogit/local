@@ -1,0 +1,21 @@
+# description  : Firmware files for rtl8168d
+
+name=linux-firmware-rtl8168d
+version=20230804
+release=1
+baseurl=https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/plain
+source="${baseurl}/rtl_nic/rtl8168d-2.fw"
+
+build() {
+	# create $PKG dirs
+	mkdir -pv $PKG/lib/firmware/rtl_nic
+
+	# copy blobs in $PKG
+	cp rtl8168* $PKG/lib/firmware/rtl_nic
+
+	# remove blobs from source dir
+	cd $SOURCE_DIR
+	for c in *.bin *.fw; do
+		rm -f $c
+	done
+}

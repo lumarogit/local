@@ -1,0 +1,35 @@
+# description  : Firmware files for AMDGPU Green Sardine
+
+name=linux-firmware-green
+version=20230804
+release=1
+baseurl=https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/plain
+agpu=green_sardine_
+
+source="${baseurl}/amdgpu/${agpu}asd.bin 
+	${baseurl}/amdgpu/${agpu}ce.bin 
+	${baseurl}/amdgpu/${agpu}dmcub.bin 
+	${baseurl}/amdgpu/${agpu}me.bin 
+	${baseurl}/amdgpu/${agpu}mec.bin 
+	${baseurl}/amdgpu/${agpu}mec2.bin 
+	${baseurl}/amdgpu/${agpu}pfp.bin 
+	${baseurl}/amdgpu/${agpu}rlc.bin 
+	${baseurl}/amdgpu/${agpu}sdma.bin 
+	${baseurl}/amdgpu/${agpu}ta.bin 
+	${baseurl}/amdgpu/${agpu}vcn.bin"
+
+build() {
+	# create $PKG dirs
+	for i in amd amdgpu; do
+		mkdir -pv $PKG/lib/firmware/${i}
+	done
+  
+	# copy blobs in $PKG
+	cp ${agpu}* $PKG/lib/firmware/amdgpu
+
+	# remove blobs from source dir
+	cd $SOURCE_DIR
+	for c in *.bin *.bin.asc *.fw *.sbin; do
+		rm -f $c
+	done
+}

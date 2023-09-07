@@ -1,0 +1,27 @@
+# description  : Firmware files for AMD Microcode
+
+name=linux-firmware-amd-ucode
+version=20230804
+release=1
+baseurl=https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/plain
+amdf=fam19h
+source="${baseurl}/amd-ucode/microcode_amd_${amdf}.bin 
+	${baseurl}/amd-ucode/microcode_amd_${amdf}.bin.asc
+	${baseurl}/amd/amd_sev_${amdf}_model0xh.sbin"
+
+build() {
+	# create $PKG dirs
+	for i in amd amd-ucode; do
+		mkdir -pv $PKG/lib/firmware/${i}
+	done
+  
+	# copy blobs in $PKG
+	cp amd*${amdf}* $PKG/lib/firmware/amd
+	cp microcode*${amdf}* $PKG/lib/firmware/amd-ucode
+
+	# remove blobs from source dir
+	cd $SOURCE_DIR
+	for c in *.bin *.bin.asc *.fw *.sbin; do
+		rm -f $c
+	done
+}

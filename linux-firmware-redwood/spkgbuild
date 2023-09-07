@@ -1,0 +1,25 @@
+# description  : Firmware files for Redwood
+
+name=linux-firmware-redwood
+version=20230804
+release=1
+baseurl=https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/plain
+source="${baseurl}/radeon/CYPRESS_uvd.bin
+	${baseurl}/radeon/REDWOOD_me.bin
+	${baseurl}/radeon/REDWOOD_pfp.bin
+	${baseurl}/radeon/REDWOOD_rlc.bin
+	${baseurl}/radeon/REDWOOD_smc.bin"
+
+build() {
+	# create $PKG dirs
+	mkdir -pv $PKG/lib/firmware/radeon
+
+	# copy blobs in $PKG
+	cp CYPRESS* REDWOOD* $PKG/lib/firmware/radeon
+
+	# remove blobs from source dir
+	cd $SOURCE_DIR
+	for c in *.bin *.fw; do
+		rm -f $c
+	done
+}

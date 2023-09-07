@@ -1,4 +1,4 @@
-linux-firmware-amd-20230804-1
+linux-firmware-green-20230804-1
 drwxr-xr-x root/root    lib/
 drwxr-xr-x root/root    lib/firmware/
 drwxr-xr-x root/root    lib/firmware/amd-ucode/
@@ -19,4 +19,3 @@ drwxr-xr-x root/root    lib/firmware/amdgpu/
 -rw-r--r-- root/root    lib/firmware/amdgpu/green_sardine_ta.bin
 -rw-r--r-- root/root    lib/firmware/amdgpu/green_sardine_vcn.bin
 drwxr-xr-x root/root    lib/firmware/rtl_nic/
--rw-r--r-- root/root    lib/firmware/rtl_nic/rtl8168h-2.fw

@@ -1,0 +1,9 @@
+linux-firmware-redwood-20230804-1
+drwxr-xr-x root/root    lib/
+drwxr-xr-x root/root    lib/firmware/
+drwxr-xr-x root/root    lib/firmware/radeon/
+-rw-r--r-- root/root    lib/firmware/radeon/CYPRESS_uvd.bin
+-rw-r--r-- root/root    lib/firmware/radeon/REDWOOD_me.bin
+-rw-r--r-- root/root    lib/firmware/radeon/REDWOOD_pfp.bin
+-rw-r--r-- root/root    lib/firmware/radeon/REDWOOD_rlc.bin
+-rw-r--r-- root/root    lib/firmware/radeon/REDWOOD_smc.bin

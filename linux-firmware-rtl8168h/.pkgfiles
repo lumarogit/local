@@ -1,0 +1,5 @@
+linux-firmware-rtl8168h-20230804-1
+drwxr-xr-x root/root    lib/
+drwxr-xr-x root/root    lib/firmware/
+drwxr-xr-x root/root    lib/firmware/rtl_nic/
+-rw-r--r-- root/root    lib/firmware/rtl_nic/rtl8168h-2.fw
