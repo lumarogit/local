@@ -2,15 +2,14 @@
 # homepage	: http://mirbsd.org/mksh.htm
 
 name=mksh-git
-version=20230828
-_commit=f1c5a6e3d90a7bcc0bdf1b36ae8e687a48cafcf6
+version=20230908
+commit=1ea7fdae8a15bd799dc92eadfeb99cfe2b2375e9
 release=1
 backup="etc/mkshrc"
-source="$name-$version.tar.gz::https://github.com/MirBSD/mksh/archive/${_commit}.tar.gz"
+source="$name-$version.tar.gz::https://github.com/MirBSD/mksh/archive/$commit.tar.gz"
 
 build() {
-	#git clone --depth=1 https://github.com/MirBSD/mksh.git $name
-	cd ${name%-*}-${_commit}
+	cd ${name%-*}-$commit
 
 	CPPFLAGS="$CPPFLAGS -DMKSH_BINSHPOSIX=1 -DMKSH_UNLIMITED=1 -DMKSH_ASSUME_UTF8=1 -DMKSH_DISABLE_DEPRECATED=1 -DMKSH_DISABLE_EXPERIMENTAL=1 -DMKSH_NOPROSPECTOFWORK=1 -DMKSH_SMALL_BUT_FAST=1 -DMKSH_S_NOVI=1 -DMKSH_UNEMPLOYED=1" sh Build.sh -r
 
