@@ -2,8 +2,8 @@
 # depends	: elfutils openssl yaml bc
 
 name=linux-rc
-version=6.5.0
-release=7
+version=6.6.0
+release=1
 source="https://git.kernel.org/torvalds/t/${name%-*}-${version%.*}-rc$release.tar.gz
 	config-dell config-lenovo config-ryzen"
 NO_STRIP=yes
@@ -72,8 +72,7 @@ build() {
 		[ "$i" = "objtool" ] || rm -fr tools/objtool/$i
 	done
 
-	rm $PKG/lib/modules/$kernver/build \
-	   $PKG/lib/modules/$kernver/source
+	rm $PKG/lib/modules/$kernver/build #$PKG/lib/modules/$kernver/source
 	mv $SRC/${name%-*}-${version%.*}-rc$release $PKG/lib/modules/$kernver/build
 	ln -sv build $PKG/lib/modules/$kernver/source
 
