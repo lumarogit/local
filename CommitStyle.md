@@ -19,7 +19,7 @@ Example: `main/foo/spkgbuild`, `main` is the repository
 ##### Port
 
 Directory inside the repository that contains a build recipe with metadata
-(spkgbuild) and auxiliary files (.checksums, .pkgfiles, patches, config ...).
+(spkgbuild) and auxiliary files (.checksums, .pkgfiles, patches, config, ... ).
 
 The name of the directory and the value of the variable `name` in the
 build recipe **must** match.
@@ -218,3 +218,97 @@ Good examples:
 
 They are short and concise, they tell **what** the commit did. If given
 the opportunity also tell **why**.
+
+Repository Conventions
+=======================
+
+Repository conventions are important in order to ensure every package resemble themselves. 
+
+- Prefer release tarballs over git packages unless there is a sensible reason. Here are some:
+       - Every patch is a new release. 
+       - There are no releases (luajit now is rolling)
+       - Following a development branch.
+       - There has been a long time since the latest release, but upstream is far ahead. 
+
+- Always install a package to the `/usr` prefix.
+       - All binaries should go to `/usr/bin` or `/usr/sbin` in any cases.
+       - All libraries should go to `/usr/lib`. Not exist `/usr/libexec` in Venom Linux.
+
+- All build files on the repository should be a POSIX shell script, and must start with #!/bin/sh . 
+
+The next section is about package templates that should be used in order to ensure stylistic consistency. Note that the option configurations shouldn’t be taken literally, they are meant as examples.
+
+### Make
+	  #!/bin/sh
+
+    ./configure \
+        --prefix=/usr \
+        --disable-option \
+        --enable-option
+	  make
+    make DESTDIR=$PKG install
+	
+
+### Autoconf/Automake
+	  #!/bin/sh 
+
+    autoreconf -fi
+
+    ./configure \
+        --prefix=/usr \
+        --disable-option \
+        --enable-option
+    make
+    make DESTDIR=$PKG install
+	
+
+### Meson
+The distribution provides a `venom-meson` wrapper script which sets some common options. This is the preferred method.
+
+    #!/bin/sh 
+
+    venom-meson $name-$version build \
+        -Doption=false \
+        -Doption2=true
+    meson compile -C build
+    DESTDIR=$PKG meson install --no-rebuild -C build
+	
+    
+### Cmake
+	  #!/bin/sh 
+
+	  cmake -S $name-$version -B build \
+		    -DCMAKE_INSTALL_PREFIX=/usr \
+		    -DCMAKE_INSTALL_LIBDIR=lib \
+		    -DCMAKE_INSTALL_LIBEXECDIR=lib \
+		    -DCMAKE_BUILD_TYPE=Release \
+		    -DCMAKE_C_FLAGS_RELEASE="$CFLAGS" \
+		    -DCMAKE_CXX_FLAGS_RELEASE="$CXXFLAGS" \
+		    -DOPTION=ON/OFF \
+		    -Wno-dev 
+	  cmake --build build
+	  DESTDIR=$PKG cmake --install build
+	
+    
+### Go
+	  #!/bin/sh
+
+    cd $name-$version
+
+	  export CGO_LDFLAGS="${LDFLAGS}"
+	  export CGO_CFLAGS="${CFLAGS}"
+	  export CGO_CPPFLAGS="${CPPFLAGS}"
+	  export CGO_CXXFLAGS="${CXXFLAGS}"
+	  export GOFLAGS="-buildmode=pie -trimpath -mod=readonly -modcacherw -ldflags=-linkmode=external"
+	  export GOPATH=$SRC/go
+	  export PATH=$PATH:$GOPATH/bin
+	
+    go build -o bin/$name *.go
+    
+
+### Python
+	  #!/bin/sh
+
+    python3 setup.py build
+    python3 setup.py install --prefix=/usr --root=$PKG
+	
