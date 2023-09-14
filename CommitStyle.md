@@ -242,10 +242,10 @@ The next section is about package templates that should be used in order to ensu
 	  #!/bin/sh
 
     ./configure \
-        --prefix=/usr \
-        --disable-option \
-        --enable-option
-	  make
+        	--prefix=/usr \
+        	--disable-option \
+        	--enable-option
+    make
     make DESTDIR=$PKG install
 	
 
@@ -255,9 +255,9 @@ The next section is about package templates that should be used in order to ensu
     autoreconf -fi
 
     ./configure \
-        --prefix=/usr \
-        --disable-option \
-        --enable-option
+        	--prefix=/usr \
+        	--disable-option \
+        	--enable-option
     make
     make DESTDIR=$PKG install
 	
@@ -268,46 +268,46 @@ The distribution provides a `venom-meson` wrapper script which sets some common 
     #!/bin/sh 
 
     venom-meson $name-$version build \
-        -Doption=false \
-        -Doption2=true
+        	-Doption=false \
+        	-Doption2=true
     meson compile -C build
     DESTDIR=$PKG meson install --no-rebuild -C build
 	
     
-### Cmake
-	  #!/bin/sh 
+### Cmake	
+    #!/bin/sh 
 
-	  cmake -S $name-$version -B build \
-		    -DCMAKE_INSTALL_PREFIX=/usr \
-		    -DCMAKE_INSTALL_LIBDIR=lib \
-		    -DCMAKE_INSTALL_LIBEXECDIR=lib \
-		    -DCMAKE_BUILD_TYPE=Release \
-		    -DCMAKE_C_FLAGS_RELEASE="$CFLAGS" \
-		    -DCMAKE_CXX_FLAGS_RELEASE="$CXXFLAGS" \
-		    -DOPTION=ON/OFF \
-		    -Wno-dev 
-	  cmake --build build
-	  DESTDIR=$PKG cmake --install build
+    cmake -S $name-$version -B build \
+   		-DCMAKE_INSTALL_PREFIX=/usr \
+   		-DCMAKE_INSTALL_LIBDIR=lib \
+   		-DCMAKE_INSTALL_LIBEXECDIR=lib \
+		-DCMAKE_BUILD_TYPE=Release \
+		-DCMAKE_C_FLAGS_RELEASE="$CFLAGS" \
+		-DCMAKE_CXX_FLAGS_RELEASE="$CXXFLAGS" \
+		-DOPTION=ON/OFF \
+		-Wno-dev 
+    cmake --build build
+    DESTDIR=$PKG cmake --install build
 	
     
 ### Go
-	  #!/bin/sh
+    #!/bin/sh
 
     cd $name-$version
 
-	  export CGO_LDFLAGS="${LDFLAGS}"
-	  export CGO_CFLAGS="${CFLAGS}"
-	  export CGO_CPPFLAGS="${CPPFLAGS}"
-	  export CGO_CXXFLAGS="${CXXFLAGS}"
-	  export GOFLAGS="-buildmode=pie -trimpath -mod=readonly -modcacherw -ldflags=-linkmode=external"
-	  export GOPATH=$SRC/go
-	  export PATH=$PATH:$GOPATH/bin
-	
+		export CGO_LDFLAGS="${LDFLAGS}"
+  		export CGO_CFLAGS="${CFLAGS}"
+		export CGO_CPPFLAGS="${CPPFLAGS}"
+		export CGO_CXXFLAGS="${CXXFLAGS}"
+		export GOFLAGS="-buildmode=pie -trimpath -mod=readonly -modcacherw -ldflags=-linkmode=external"
+		export GOPATH=$SRC/go
+		export PATH=$PATH:$GOPATH/bin
+    
     go build -o bin/$name *.go
     
 
 ### Python
-	  #!/bin/sh
+    #!/bin/sh
 
     python3 setup.py build
     python3 setup.py install --prefix=/usr --root=$PKG
