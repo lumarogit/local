@@ -215,9 +215,6 @@ Good examples:
     - `under gcc-10` is **why**
 - `foo: disable support for X`
     - `disable support for X` is **what**
-what**
 
 They are short and concise, they tell **what** the commit did. If given
 the opportunity also tell **why**.
-
-The **how** and a clear **why** is handled by the commit body and changes.
