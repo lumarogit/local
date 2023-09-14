@@ -2,13 +2,13 @@
 # homepage	: https://github.com/michaelforney/samurai
 
 name=samurai-git
-version=1.2
+version=20230630
 release=1
-_commit="2d05a9ac47794131efeb59e7dc4ee99287738c9c"
-source="$name-$version.tar.gz::https://github.com/michaelforney/samurai/archive/${_commit}.tar.gz"
+commit=217059f21e2d1f016f7ba044b36d12de95788cf3
+source="$name-$version-$commit.tar.gz::https://github.com/michaelforney/samurai/archive/${commit}.tar.gz"
 
 build() {
-	cd ${name%-*}-$_commit	
+	cd ${name%-*}-$commit	
 	
 	make
 	make PREFIX=/usr DESTDIR=$PKG install
