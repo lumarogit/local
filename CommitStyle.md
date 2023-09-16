@@ -306,9 +306,23 @@ The distribution provides a `venom-meson` wrapper script which sets some common 
     go build -o bin/$name *.go
     
 
-### Python
+### Python (setup)
     #!/bin/sh
 
     python3 setup.py build
     python3 setup.py install --prefix=/usr --root=$PKG
-	
+
+
+### Python (pip)
+    #!/bin/sh
+  
+    pip3 install --isolate --root=$PKG 
+
+
+### Python (build)
+    #!/bin/sh
+  
+     python3 -m build --wheel --skip-dependency-check --no-isolation
+     python3 -m installer --destdir=$PKG
+
+    
