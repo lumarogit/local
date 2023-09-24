@@ -3,7 +3,7 @@
 
 name=glibc
 version=2.38
-release=3
+release=4
 backup="etc/locales"
 source="https://ftp.gnu.org/gnu/$name/$name-$version.tar.xz
 	genlocales nsswitch.conf ld.so.conf
@@ -33,7 +33,6 @@ build() {
 		--disable-profile \
 		--disable-werror \
 		--enable-bind-now \
-		--enable-crypt \
 		--enable-kernel=4.14 \
 		--enable-stack-protector=strong \
 		--enable-multi-arch \
