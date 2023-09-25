@@ -1,13 +1,14 @@
 Submitted By:            Xi Ruoyao <xry111 at xry111.site>
 Date:                    2023-09-13
 Initial Package Version: 2.38
-Upstream Status:         Under review
+Upstream Status:         Applied
 Origin:                  Upstream & Self
-  - 1/5: https://sourceware.org/git/?p=glibc.git;a=patch;h=542b11058525
-  - 2/5: https://sourceware.org/pipermail/libc-alpha/2023-August/150857.html
-  - 3/5: Trivial unused code removal
-  - 4/5: https://sourceware.org/pipermail/libc-alpha/2023-September/151522.html
-  - 5/5: https://sourceware.org/pipermail/libc-alpha/2023-September/151548.html
+  - 1/6: https://sourceware.org/git/?p=glibc.git;a=patch;h=542b11058525
+  - 2/6: https://sourceware.org/pipermail/libc-alpha/2023-August/150857.html
+  - 3/6: Trivial unused code removal
+  - 4/6: https://sourceware.org/pipermail/libc-alpha/2023-September/151522.html
+  - 5/6: https://sourceware.org/pipermail/libc-alpha/2023-September/151548.html
+  - 6/6: https://sourceware.org/git/gitweb.cgi?p=glibc.git;h=ec6b95c3303c
 Description:             Fixes a regression causing posix_memalign()
                          very slow in certain conditions to avoid
                          breaking ffmpeg-based applications;
@@ -693,3 +694,21 @@ index 6ae6744fe4..eb5ba59dac 100644
  		      if (canonbuf == NULL)
  			{
  			  __resolv_context_put (res_ctx);
+
+X-Git-Url: https://sourceware.org/git/?p=glibc.git;a=blobdiff_plain;f=sysdeps%2Fposix%2Fgetaddrinfo.c;h=531124958d037733ccee13bf59f97ab4a36ffdd4;hp=47f421fddf7e1aff732763ea333b2469f241091a;hb=ec6b95c3303c700eb89eebeda2d7264cc184a796;hpb=5d00c201b9a2da768a79ea8d5311f257871c0b43
+
+diff --git a/sysdeps/posix/getaddrinfo.c b/sysdeps/posix/getaddrinfo.c
+index 47f421fddf..531124958d 100644
+--- a/sysdeps/posix/getaddrinfo.c
++++ b/sysdeps/posix/getaddrinfo.c
+@@ -1196,9 +1196,7 @@ free_and_return:
+   if (malloc_name)
+     free ((char *) name);
+   free (addrmem);
+-  if (res.free_at)
+-    free (res.at);
+-  free (res.canon);
++  gaih_result_reset (&res);
+ 
+   return result;
+ }
