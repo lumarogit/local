@@ -3,7 +3,7 @@
 
 name=linux-rc
 version=6.6.0
-release=3
+release=4
 source="https://git.kernel.org/torvalds/t/${name%-*}-${version%.*}-rc$release.tar.gz
 	config-dell config-lenovo config-ryzen"
 NO_STRIP=yes
