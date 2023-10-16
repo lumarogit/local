@@ -5,7 +5,7 @@
 
 name=firefox
 version=118.0.2
-release=3
+release=4
 source="$name-$version.tar.xz::https://archive.mozilla.org/pub/firefox/releases/$version/source/firefox-$version.source.tar.xz 
 	$name.desktop
 	0001-Bug-1849874-Update-from-packed_simd_2-to-packed_simd.patch
@@ -44,6 +44,8 @@ ac_add_options --enable-dbus
 ac_add_options --enable-ffmpeg
 ac_add_options --enable-hardening
 ac_add_options --enable-install-strip
+#ac_add_options --enable-linker=lld
+#ac_add_options --enable-lto=thin
 ac_add_options --enable-official-branding
 ac_add_options --enable-optimize="$CFLAGS -O2"
 ac_add_options --enable-release
@@ -77,8 +79,8 @@ EOF
     echo 'ac_add_options --enable-default-toolkit=cairo-gtk3' >> .mozconfig
 
   # Build configuration
-#  export CC=clang CXX=clang++ AR=llvm-ar NM=llvm-nm RANLIB=llvm-ranlib
-  export CC=gcc CXX=g++
+ # export CC=clang CXX=clang++ AR=llvm-ar NM=llvm-nm RANLIB=llvm-ranlib
+  export CC=gcc CXX=g++ 	
   export CFLAGS="$CFLAGS -w" CXXFLAGS="$CXXFLAGS -w" # Disable warnings
   export RUSTFLAGS="-C opt-level=2 $RUSTFLAGS"
   export MOZ_NOSPAM=1
