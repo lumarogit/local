@@ -1,4 +1,4 @@
-sbcl-2.3.5-1
+sbcl-2.3.9-1
 drwxr-xr-x root/root    usr/
 drwxr-xr-x root/root    usr/bin/
 -rwxr-xr-x root/root    usr/bin/sbcl
@@ -434,6 +434,7 @@ drwxr-xr-x root/root    usr/share/sbcl-source/src/code/
 -rw-r--r-- root/root    usr/share/sbcl-source/src/code/defpackage.lisp
 -rw-r--r-- root/root    usr/share/sbcl-source/src/code/defsetfs.lisp
 -rw-r--r-- root/root    usr/share/sbcl-source/src/code/defstruct.lisp
+-rw-r--r-- root/root    usr/share/sbcl-source/src/code/deftype.lisp
 -rw-r--r-- root/root    usr/share/sbcl-source/src/code/deftypes-for-target.lisp
 -rw-r--r-- root/root    usr/share/sbcl-source/src/code/describe-policy.lisp
 -rw-r--r-- root/root    usr/share/sbcl-source/src/code/describe.lisp
@@ -629,6 +630,7 @@ drwxr-xr-x root/root    usr/share/sbcl-source/src/cold/
 -rw-r--r-- root/root    usr/share/sbcl-source/src/cold/shebang.lisp
 -rw-r--r-- root/root    usr/share/sbcl-source/src/cold/slam.lisp
 -rw-r--r-- root/root    usr/share/sbcl-source/src/cold/snapshot.lisp
+-rw-r--r-- root/root    usr/share/sbcl-source/src/cold/ucd-filespecs.lisp-expr
 -rw-r--r-- root/root    usr/share/sbcl-source/src/cold/undefined-fun-allowlist.lisp-expr
 -rw-r--r-- root/root    usr/share/sbcl-source/src/cold/warm.lisp
 drwxr-xr-x root/root    usr/share/sbcl-source/src/compiler/
@@ -693,15 +695,14 @@ drwxr-xr-x root/root    usr/share/sbcl-source/src/compiler/arm64/
 -rw-r--r-- root/root    usr/share/sbcl-source/src/compiler/codegen.lisp
 -rw-r--r-- root/root    usr/share/sbcl-source/src/compiler/compiler-error.lisp
 -rw-r--r-- root/root    usr/share/sbcl-source/src/compiler/constantp.lisp
+-rw-r--r-- root/root    usr/share/sbcl-source/src/compiler/constraint-back.lisp
 -rw-r--r-- root/root    usr/share/sbcl-source/src/compiler/constraint.lisp
 -rw-r--r-- root/root    usr/share/sbcl-source/src/compiler/control.lisp
 -rw-r--r-- root/root    usr/share/sbcl-source/src/compiler/copyprop.lisp
 -rw-r--r-- root/root    usr/share/sbcl-source/src/compiler/coverage.lisp
 -rw-r--r-- root/root    usr/share/sbcl-source/src/compiler/ctype.lisp
--rw-r--r-- root/root    usr/share/sbcl-source/src/compiler/dce.lisp
 -rw-r--r-- root/root    usr/share/sbcl-source/src/compiler/debug-dump.lisp
 -rw-r--r-- root/root    usr/share/sbcl-source/src/compiler/debug.lisp
--rw-r--r-- root/root    usr/share/sbcl-source/src/compiler/deftype.lisp
 -rw-r--r-- root/root    usr/share/sbcl-source/src/compiler/dfo.lisp
 -rw-r--r-- root/root    usr/share/sbcl-source/src/compiler/disassem.lisp
 -rw-r--r-- root/root    usr/share/sbcl-source/src/compiler/dump.lisp
@@ -1035,6 +1036,7 @@ lrwxrwxrwx root/root    usr/share/sbcl-source/src/runtime/Config -> Config.x86-6
 -rw-r--r-- root/root    usr/share/sbcl-source/src/runtime/Config.arm64-openbsd
 -rw-r--r-- root/root    usr/share/sbcl-source/src/runtime/Config.generic-openbsd
 -rw-r--r-- root/root    usr/share/sbcl-source/src/runtime/Config.mips-linux
+-rw-r--r-- root/root    usr/share/sbcl-source/src/runtime/Config.ppc-darwin
 -rw-r--r-- root/root    usr/share/sbcl-source/src/runtime/Config.ppc-linux
 -rw-r--r-- root/root    usr/share/sbcl-source/src/runtime/Config.ppc-netbsd
 -rw-r--r-- root/root    usr/share/sbcl-source/src/runtime/Config.ppc-openbsd
@@ -1056,6 +1058,7 @@ lrwxrwxrwx root/root    usr/share/sbcl-source/src/runtime/Config -> Config.x86-6
 -rw-r--r-- root/root    usr/share/sbcl-source/src/runtime/Config.x86-64-sunos
 -rw-r--r-- root/root    usr/share/sbcl-source/src/runtime/Config.x86-64-win32
 -rw-r--r-- root/root    usr/share/sbcl-source/src/runtime/Config.x86-bsd
+-rw-r--r-- root/root    usr/share/sbcl-source/src/runtime/Config.x86-darwin
 -rw-r--r-- root/root    usr/share/sbcl-source/src/runtime/Config.x86-dragonfly
 -rw-r--r-- root/root    usr/share/sbcl-source/src/runtime/Config.x86-freebsd
 -rw-r--r-- root/root    usr/share/sbcl-source/src/runtime/Config.x86-gnu-kfreebsd
@@ -1069,7 +1072,6 @@ lrwxrwxrwx root/root    usr/share/sbcl-source/src/runtime/Config -> Config.x86-6
 -rw-r--r-- root/root    usr/share/sbcl-source/src/runtime/align.h
 -rw-r--r-- root/root    usr/share/sbcl-source/src/runtime/alloc.c
 -rw-r--r-- root/root    usr/share/sbcl-source/src/runtime/alloc.d
--rw-r--r-- root/root    usr/share/sbcl-source/src/runtime/alloc.h
 -rw-r--r-- root/root    usr/share/sbcl-source/src/runtime/android-os.c
 -rw-r--r-- root/root    usr/share/sbcl-source/src/runtime/android-os.h
 -rw-r--r-- root/root    usr/share/sbcl-source/src/runtime/arch-os-generic.inc
@@ -1122,8 +1124,7 @@ lrwxrwxrwx root/root    usr/share/sbcl-source/src/runtime/Config -> Config.x86-6
 -rw-r--r-- root/root    usr/share/sbcl-source/src/runtime/dynbind.h
 -rw-r--r-- root/root    usr/share/sbcl-source/src/runtime/elf.c
 -rw-r--r-- root/root    usr/share/sbcl-source/src/runtime/elf.d
--rw-r--r-- root/root    usr/share/sbcl-source/src/runtime/fixnump.h
--rw-r--r-- root/root    usr/share/sbcl-source/src/runtime/forwarding-ptr.h
+-rw-r--r-- root/root    usr/share/sbcl-source/src/runtime/forwarding-ptr.inc
 -rw-r--r-- root/root    usr/share/sbcl-source/src/runtime/fullcgc.c
 -rw-r--r-- root/root    usr/share/sbcl-source/src/runtime/fullcgc.d
 -rw-r--r-- root/root    usr/share/sbcl-source/src/runtime/funcall.c
@@ -1131,63 +1132,46 @@ lrwxrwxrwx root/root    usr/share/sbcl-source/src/runtime/Config -> Config.x86-6
 -rw-r--r-- root/root    usr/share/sbcl-source/src/runtime/gc-assert.h
 -rw-r--r-- root/root    usr/share/sbcl-source/src/runtime/gc-common.c
 -rw-r--r-- root/root    usr/share/sbcl-source/src/runtime/gc-common.d
--rw-r--r-- root/root    usr/share/sbcl-source/src/runtime/gc-internal.h
--rw-r--r-- root/root    usr/share/sbcl-source/src/runtime/gc-private.h
+-rw-r--r-- root/root    usr/share/sbcl-source/src/runtime/gc-thread-pool.c
+-rw-r--r-- root/root    usr/share/sbcl-source/src/runtime/gc-thread-pool.h
+-rw-r--r-- root/root    usr/share/sbcl-source/src/runtime/gc-typedefs.h
 -rw-r--r-- root/root    usr/share/sbcl-source/src/runtime/gc-unit-tests.c
 -rw-r--r-- root/root    usr/share/sbcl-source/src/runtime/gc.h
 -rw-r--r-- root/root    usr/share/sbcl-source/src/runtime/gencgc-alloc-region.h
--rw-r--r-- root/root    usr/share/sbcl-source/src/runtime/gencgc-internal.h
--rw-r--r-- root/root    usr/share/sbcl-source/src/runtime/gencgc-private.h
+-rw-r--r-- root/root    usr/share/sbcl-source/src/runtime/gencgc-impl.h
 -rw-r--r-- root/root    usr/share/sbcl-source/src/runtime/gencgc.c
 -rw-r--r-- root/root    usr/share/sbcl-source/src/runtime/gencgc.d
 drwxr-xr-x root/root    usr/share/sbcl-source/src/runtime/genesis/
 -rw-r--r-- root/root    usr/share/sbcl-source/src/runtime/genesis/Makefile.features
 -rw-r--r-- root/root    usr/share/sbcl-source/src/runtime/genesis/arena.h
--rw-r--r-- root/root    usr/share/sbcl-source/src/runtime/genesis/array.h
 -rw-r--r-- root/root    usr/share/sbcl-source/src/runtime/genesis/avlnode.h
--rw-r--r-- root/root    usr/share/sbcl-source/src/runtime/genesis/bignum.h
 -rw-r--r-- root/root    usr/share/sbcl-source/src/runtime/genesis/binding.h
 -rw-r--r-- root/root    usr/share/sbcl-source/src/runtime/genesis/brothertree.h
 -rw-r--r-- root/root    usr/share/sbcl-source/src/runtime/genesis/cardmarks.h
--rw-r--r-- root/root    usr/share/sbcl-source/src/runtime/genesis/catch-block.h
 -rw-r--r-- root/root    usr/share/sbcl-source/src/runtime/genesis/closure.h
--rw-r--r-- root/root    usr/share/sbcl-source/src/runtime/genesis/code.h
--rw-r--r-- root/root    usr/share/sbcl-source/src/runtime/genesis/compiled-debug-fun.h
 -rw-r--r-- root/root    usr/share/sbcl-source/src/runtime/genesis/compiled-debug-info.h
--rw-r--r-- root/root    usr/share/sbcl-source/src/runtime/genesis/complex-double-float.h
--rw-r--r-- root/root    usr/share/sbcl-source/src/runtime/genesis/complex-single-float.h
--rw-r--r-- root/root    usr/share/sbcl-source/src/runtime/genesis/complex.h
 -rw-r--r-- root/root    usr/share/sbcl-source/src/runtime/genesis/config.h
 -rw-r--r-- root/root    usr/share/sbcl-source/src/runtime/genesis/cons.h
 -rw-r--r-- root/root    usr/share/sbcl-source/src/runtime/genesis/constants.h
 -rw-r--r-- root/root    usr/share/sbcl-source/src/runtime/genesis/defstruct-description.h
--rw-r--r-- root/root    usr/share/sbcl-source/src/runtime/genesis/defstruct-slot-description.h
--rw-r--r-- root/root    usr/share/sbcl-source/src/runtime/genesis/double-float.h
 -rw-r--r-- root/root    usr/share/sbcl-source/src/runtime/genesis/errnames.h
 -rw-r--r-- root/root    usr/share/sbcl-source/src/runtime/genesis/fdefn.h
--rw-r--r-- root/root    usr/share/sbcl-source/src/runtime/genesis/funcallable-instance.h
 -rw-r--r-- root/root    usr/share/sbcl-source/src/runtime/genesis/gc-tables.h
 -rw-r--r-- root/root    usr/share/sbcl-source/src/runtime/genesis/hash-table.h
 -rw-r--r-- root/root    usr/share/sbcl-source/src/runtime/genesis/instance.h
--rw-r--r-- root/root    usr/share/sbcl-source/src/runtime/genesis/layout.h
 -rw-r--r-- root/root    usr/share/sbcl-source/src/runtime/genesis/list-node.h
--rw-r--r-- root/root    usr/share/sbcl-source/src/runtime/genesis/mutex.h
+-rw-r--r-- root/root    usr/share/sbcl-source/src/runtime/genesis/number-types.h
 -rw-r--r-- root/root    usr/share/sbcl-source/src/runtime/genesis/package.h
 -rw-r--r-- root/root    usr/share/sbcl-source/src/runtime/genesis/primitive-objects.h
 -rw-r--r-- root/root    usr/share/sbcl-source/src/runtime/genesis/print.inc
--rw-r--r-- root/root    usr/share/sbcl-source/src/runtime/genesis/ratio.h
 -rw-r--r-- root/root    usr/share/sbcl-source/src/runtime/genesis/regnames.h
 -rw-r--r-- root/root    usr/share/sbcl-source/src/runtime/genesis/sap.h
 -rw-r--r-- root/root    usr/share/sbcl-source/src/runtime/genesis/sc-offset.h
--rw-r--r-- root/root    usr/share/sbcl-source/src/runtime/genesis/simd-pack-256.h
--rw-r--r-- root/root    usr/share/sbcl-source/src/runtime/genesis/simd-pack.h
--rw-r--r-- root/root    usr/share/sbcl-source/src/runtime/genesis/simple-fun.h
 -rw-r--r-- root/root    usr/share/sbcl-source/src/runtime/genesis/split-ordered-list.h
 -rw-r--r-- root/root    usr/share/sbcl-source/src/runtime/genesis/static-symbols.h
 -rw-r--r-- root/root    usr/share/sbcl-source/src/runtime/genesis/symbol.h
 -rw-r--r-- root/root    usr/share/sbcl-source/src/runtime/genesis/tagnames.h
 -rw-r--r-- root/root    usr/share/sbcl-source/src/runtime/genesis/thread-init.inc
--rw-r--r-- root/root    usr/share/sbcl-source/src/runtime/genesis/thread-instance.h
 -rw-r--r-- root/root    usr/share/sbcl-source/src/runtime/genesis/thread.h
 -rw-r--r-- root/root    usr/share/sbcl-source/src/runtime/genesis/unwind-block.h
 -rw-r--r-- root/root    usr/share/sbcl-source/src/runtime/genesis/value-cell.h
@@ -1205,6 +1189,9 @@ drwxr-xr-x root/root    usr/share/sbcl-source/src/runtime/genesis/
 -rw-r--r-- root/root    usr/share/sbcl-source/src/runtime/immobile-space.c
 -rw-r--r-- root/root    usr/share/sbcl-source/src/runtime/immobile-space.d
 -rw-r--r-- root/root    usr/share/sbcl-source/src/runtime/immobile-space.h
+-rw-r--r-- root/root    usr/share/sbcl-source/src/runtime/incremental-compact.c
+-rw-r--r-- root/root    usr/share/sbcl-source/src/runtime/incremental-compact.h
+-rw-r--r-- root/root    usr/share/sbcl-source/src/runtime/instance.inc
 -rw-r--r-- root/root    usr/share/sbcl-source/src/runtime/interr.c
 -rw-r--r-- root/root    usr/share/sbcl-source/src/runtime/interr.d
 -rw-r--r-- root/root    usr/share/sbcl-source/src/runtime/interr.h
@@ -1223,6 +1210,8 @@ drwxr-xr-x root/root    usr/share/sbcl-source/src/runtime/genesis/
 -rw-r--r-- root/root    usr/share/sbcl-source/src/runtime/lispstring.h
 -rw-r--r-- root/root    usr/share/sbcl-source/src/runtime/main.c
 -rw-r--r-- root/root    usr/share/sbcl-source/src/runtime/main.d
+-rw-r--r-- root/root    usr/share/sbcl-source/src/runtime/mark-region.c
+-rw-r--r-- root/root    usr/share/sbcl-source/src/runtime/mark-region.h
 -rw-r--r-- root/root    usr/share/sbcl-source/src/runtime/math.c
 -rw-r--r-- root/root    usr/share/sbcl-source/src/runtime/math.d
 -rw-r--r-- root/root    usr/share/sbcl-source/src/runtime/mips-arch.c
@@ -1233,7 +1222,6 @@ drwxr-xr-x root/root    usr/share/sbcl-source/src/runtime/genesis/
 -rw-r--r-- root/root    usr/share/sbcl-source/src/runtime/mips-lispregs.h
 -rw-r--r-- root/root    usr/share/sbcl-source/src/runtime/monitor.c
 -rw-r--r-- root/root    usr/share/sbcl-source/src/runtime/monitor.d
--rw-r--r-- root/root    usr/share/sbcl-source/src/runtime/monitor.h
 -rw-r--r-- root/root    usr/share/sbcl-source/src/runtime/mswin.def
 -rw-r--r-- root/root    usr/share/sbcl-source/src/runtime/mswin64.def
 -rw-r--r-- root/root    usr/share/sbcl-source/src/runtime/murmur_hash.c
@@ -1245,11 +1233,15 @@ drwxr-xr-x root/root    usr/share/sbcl-source/src/runtime/genesis/
 -rw-r--r-- root/root    usr/share/sbcl-source/src/runtime/parse.c
 -rw-r--r-- root/root    usr/share/sbcl-source/src/runtime/parse.d
 -rw-r--r-- root/root    usr/share/sbcl-source/src/runtime/parse.h
+-rw-r--r-- root/root    usr/share/sbcl-source/src/runtime/pmrgc-impl.h
+-rw-r--r-- root/root    usr/share/sbcl-source/src/runtime/pmrgc.c
 -rw-r--r-- root/root    usr/share/sbcl-source/src/runtime/ppc-arch.c
 -rw-r--r-- root/root    usr/share/sbcl-source/src/runtime/ppc-arch.h
 -rw-r--r-- root/root    usr/share/sbcl-source/src/runtime/ppc-assem.S
 -rw-r--r-- root/root    usr/share/sbcl-source/src/runtime/ppc-bsd-os.c
 -rw-r--r-- root/root    usr/share/sbcl-source/src/runtime/ppc-bsd-os.h
+-rw-r--r-- root/root    usr/share/sbcl-source/src/runtime/ppc-darwin-os.c
+-rw-r--r-- root/root    usr/share/sbcl-source/src/runtime/ppc-darwin-os.h
 -rw-r--r-- root/root    usr/share/sbcl-source/src/runtime/ppc-linux-os.c
 -rw-r--r-- root/root    usr/share/sbcl-source/src/runtime/ppc-linux-os.h
 -rw-r--r-- root/root    usr/share/sbcl-source/src/runtime/ppc-lispregs.h
@@ -1265,6 +1257,7 @@ drwxr-xr-x root/root    usr/share/sbcl-source/src/runtime/genesis/
 -rw-r--r-- root/root    usr/share/sbcl-source/src/runtime/pthreads_win32.h
 -rw-r--r-- root/root    usr/share/sbcl-source/src/runtime/purify.c
 -rw-r--r-- root/root    usr/share/sbcl-source/src/runtime/purify.h
+-rw-r--r-- root/root    usr/share/sbcl-source/src/runtime/queue-suballocator.h
 -rw-r--r-- root/root    usr/share/sbcl-source/src/runtime/queue.h
 -rw-r--r-- root/root    usr/share/sbcl-source/src/runtime/regnames.c
 -rw-r--r-- root/root    usr/share/sbcl-source/src/runtime/regnames.d
@@ -1307,6 +1300,7 @@ drwxr-xr-x root/root    usr/share/sbcl-source/src/runtime/genesis/
 -rw-r--r-- root/root    usr/share/sbcl-source/src/runtime/stringspace.d
 -rw-r--r-- root/root    usr/share/sbcl-source/src/runtime/sunos-os.c
 -rw-r--r-- root/root    usr/share/sbcl-source/src/runtime/sunos-os.h
+-rw-r--r-- root/root    usr/share/sbcl-source/src/runtime/symbol-tls.inc
 -rw-r--r-- root/root    usr/share/sbcl-source/src/runtime/sys_mmap.inc
 lrwxrwxrwx root/root    usr/share/sbcl-source/src/runtime/target-arch-os.h -> x86-64-linux-os.h
 lrwxrwxrwx root/root    usr/share/sbcl-source/src/runtime/target-arch.h -> x86-64-arch.h
@@ -1318,6 +1312,8 @@ lrwxrwxrwx root/root    usr/share/sbcl-source/src/runtime/target-os.h -> linux-o
 -rw-r--r-- root/root    usr/share/sbcl-source/src/runtime/thread.h
 -rw-r--r-- root/root    usr/share/sbcl-source/src/runtime/time.c
 -rw-r--r-- root/root    usr/share/sbcl-source/src/runtime/time.d
+-rw-r--r-- root/root    usr/share/sbcl-source/src/runtime/tiny-lock.h
+-rw-r--r-- root/root    usr/share/sbcl-source/src/runtime/trace-object.inc
 -rw-r--r-- root/root    usr/share/sbcl-source/src/runtime/traceroot.c
 -rw-r--r-- root/root    usr/share/sbcl-source/src/runtime/traceroot.d
 -rw-r--r-- root/root    usr/share/sbcl-source/src/runtime/trymap.c
@@ -1331,7 +1327,6 @@ lrwxrwxrwx root/root    usr/share/sbcl-source/src/runtime/target-os.h -> linux-o
 -rw-r--r-- root/root    usr/share/sbcl-source/src/runtime/vars.c
 -rw-r--r-- root/root    usr/share/sbcl-source/src/runtime/vars.d
 -rw-r--r-- root/root    usr/share/sbcl-source/src/runtime/vars.h
--rw-r--r-- root/root    usr/share/sbcl-source/src/runtime/verify.inc
 -rw-r--r-- root/root    usr/share/sbcl-source/src/runtime/weak-hash-pred.inc
 -rw-r--r-- root/root    usr/share/sbcl-source/src/runtime/win32-os.c
 -rw-r--r-- root/root    usr/share/sbcl-source/src/runtime/win32-os.h
@@ -1365,6 +1360,8 @@ lrwxrwxrwx root/root    usr/share/sbcl-source/src/runtime/target-os.h -> linux-o
 -rw-r--r-- root/root    usr/share/sbcl-source/src/runtime/x86-assem.S
 -rw-r--r-- root/root    usr/share/sbcl-source/src/runtime/x86-bsd-os.c
 -rw-r--r-- root/root    usr/share/sbcl-source/src/runtime/x86-bsd-os.h
+-rw-r--r-- root/root    usr/share/sbcl-source/src/runtime/x86-darwin-os.c
+-rw-r--r-- root/root    usr/share/sbcl-source/src/runtime/x86-darwin-os.h
 -rw-r--r-- root/root    usr/share/sbcl-source/src/runtime/x86-linux-os.c
 -rw-r--r-- root/root    usr/share/sbcl-source/src/runtime/x86-linux-os.h
 -rw-r--r-- root/root    usr/share/sbcl-source/src/runtime/x86-lispregs.h

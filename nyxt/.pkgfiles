@@ -1,4 +1,4 @@
-nyxt-3.1.0-1
+nyxt-3.9.0-1
 drwxr-xr-x root/root    usr/
 drwxr-xr-x root/root    usr/bin/
 -rwxr-xr-x root/root    usr/bin/nyxt
@@ -22,6 +22,11 @@ drwxr-xr-x root/root    usr/share/icons/hicolor/32x32/apps/
 drwxr-xr-x root/root    usr/share/icons/hicolor/512x512/
 drwxr-xr-x root/root    usr/share/icons/hicolor/512x512/apps/
 -rw-r--r-- root/root    usr/share/icons/hicolor/512x512/apps/nyxt.png
+drwxr-xr-x root/root    usr/share/icons/hicolor/scalable/
+drwxr-xr-x root/root    usr/share/icons/hicolor/scalable/apps/
+-rw-r--r-- root/root    usr/share/icons/hicolor/scalable/apps/nyxt.svg
+drwxr-xr-x root/root    usr/share/metainfo/
+-rw-r--r-- root/root    usr/share/metainfo/nyxt.metainfo.xml
 drwxr-xr-x root/root    usr/share/nyxt/
 drwxr-xr-x root/root    usr/share/nyxt/libraries/
 drwxr-xr-x root/root    usr/share/nyxt/libraries/analysis/
@@ -64,8 +69,9 @@ drwxr-xr-x root/root    usr/share/nyxt/libraries/text-buffer/
 -rw-r--r-- root/root    usr/share/nyxt/libraries/text-buffer/text-buffer.lisp
 drwxr-xr-x root/root    usr/share/nyxt/libraries/theme/
 -rw-r--r-- root/root    usr/share/nyxt/libraries/theme/README.org
--rw-r--r-- root/root    usr/share/nyxt/libraries/theme/default-dark-theme.png
--rw-r--r-- root/root    usr/share/nyxt/libraries/theme/default-light-theme.png
+-rw-r--r-- root/root    usr/share/nyxt/libraries/theme/custom-modus-theme.png
+-rw-r--r-- root/root    usr/share/nyxt/libraries/theme/dark-theme.svg
+-rw-r--r-- root/root    usr/share/nyxt/libraries/theme/light-theme.svg
 -rw-r--r-- root/root    usr/share/nyxt/libraries/theme/package.lisp
 drwxr-xr-x root/root    usr/share/nyxt/libraries/theme/tests/
 -rw-r--r-- root/root    usr/share/nyxt/libraries/theme/tests/tests.lisp
@@ -82,6 +88,7 @@ drwxr-xr-x root/root    usr/share/nyxt/source/
 -rw-r--r-- root/root    usr/share/nyxt/source/buffer.lisp
 -rw-r--r-- root/root    usr/share/nyxt/source/changelog.lisp
 -rw-r--r-- root/root    usr/share/nyxt/source/clipboard.lisp
+-rw-r--r-- root/root    usr/share/nyxt/source/color.lisp
 -rw-r--r-- root/root    usr/share/nyxt/source/command-commands.lisp
 -rw-r--r-- root/root    usr/share/nyxt/source/command.lisp
 -rw-r--r-- root/root    usr/share/nyxt/source/concurrency.lisp
@@ -126,6 +133,7 @@ drwxr-xr-x root/root    usr/share/nyxt/source/mode/
 -rw-r--r-- root/root    usr/share/nyxt/source/mode/help.lisp
 -rw-r--r-- root/root    usr/share/nyxt/source/mode/hint-prompt-buffer.lisp
 -rw-r--r-- root/root    usr/share/nyxt/source/mode/hint.lisp
+-rw-r--r-- root/root    usr/share/nyxt/source/mode/history-migration.lisp
 -rw-r--r-- root/root    usr/share/nyxt/source/mode/history-tree.lisp
 -rw-r--r-- root/root    usr/share/nyxt/source/mode/history.lisp
 -rw-r--r-- root/root    usr/share/nyxt/source/mode/input-edit.lisp

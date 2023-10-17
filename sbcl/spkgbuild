@@ -3,7 +3,7 @@
 # depends	: zlib texinfo
 
 name=sbcl
-version=2.3.5
+version=2.3.9
 release=1
 source="$name-$version.tar.bz2::https://sourceforge.net/projects/sbcl/files/$name/$version/$name-$version-source.tar.bz2
 	https://sourceforge.net/projects/sbcl/files/$name/$version/$name-$version-x86-64-linux-binary.tar.bz2
