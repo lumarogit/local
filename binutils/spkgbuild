@@ -19,6 +19,7 @@ build() {
 		--prefix=/usr \
 		--sysconfdir=/etc \
 		--enable-64-bit-bfd \
+		--enable-targets=x86_64-pep \
 		--enable-gold \
 		--enable-ld=default \
 		--enable-lto \
@@ -26,6 +27,7 @@ build() {
 		--enable-plugins \
 		--enable-shared \
 		--disable-nls \
+		--disable-multilib \
 		--disable-werror \
 		--with-system-zlib \
 		--without-zstd \
