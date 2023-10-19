@@ -1,9 +1,10 @@
-# description	: A linker, an assembler, and other tools for handling object files
+# description	: A collection of binary tools
+# homepage	: https://www.gnu.org/software/binutils
 # depends	: flex elfutils
 
 name=binutils
 version=2.41
-release=2
+release=3
 source="https://ftp.gnu.org/gnu/binutils/$name-$version.tar.xz"
 
 build() {
@@ -17,13 +18,21 @@ build() {
 	../configure \
 		--prefix=/usr \
 		--sysconfdir=/etc \
+		--enable-64-bit-bfd \
 		--enable-gold \
 		--enable-ld=default \
 		--enable-lto \
+		--enable-pgo-build=lto \
 		--enable-plugins \
 		--enable-shared \
+		--disable-nls \
 		--disable-werror \
-		--with-system-zlib 
+		--with-system-zlib \
+		--without-zstd \
+		--with-pic 
+
 	make tooldir=/usr
 	make tooldir=/usr DESTDIR=$PKG install
+
+	rm -r $PKG/usr/share/info
 }
