@@ -9,11 +9,12 @@ source="$name-$version.tar.gz::https://github.com/OpenPrinting/cups-filters/arch
 build() {
 	cd $name-$version
 
-	scratch isinstalled avahi || OPTAVAHI=' --disable-avahi'
-	scratch isinstalled libexif || OPTEXIF=' --disable-exi'
-	scratch isinstalled mupdf || OPTMU=' --disable-mutool
+	scratch isinstalled avahi || OPTAVA=' --disable-avahi'
+	scratch isinstalled mupdf || OPTMUP=' --disable-mutool'
+	scratch isinstalled poppler || OPTPOP=' --disable-poppler'
 
-	./configure \
+	./autogen.sh
+	./configure $OPTAVA $OPTMUP $OPTPOP \
 		--prefix=/usr        \
 		--sysconfdir=/etc    \
 		--localstatedir=/var \
