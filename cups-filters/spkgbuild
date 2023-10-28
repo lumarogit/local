@@ -1,0 +1,24 @@
+# description	: Backends and filters for CUPS
+# depends	: libcupsfilters libppd
+
+name=cups-filters
+version=2.0.0
+release=2
+source="$name-$version.tar.gz::https://github.com/OpenPrinting/cups-filters/archive/$version.tar.gz"
+
+build() {
+	cd $name-$version
+
+	scratch isinstalled avahi || OPTAVAHI=' --disable-avahi'
+	scratch isinstalled libexif || OPTEXIF=' --disable-exi'
+	scratch isinstalled mupdf || OPTMU=' --disable-mutool
+
+	./configure \
+		--prefix=/usr        \
+		--sysconfdir=/etc    \
+		--localstatedir=/var \
+		--docdir=/usr/share/doc/$name \
+		--disable-static     
+	make
+	make DESTDIR=$PKG install
+}
