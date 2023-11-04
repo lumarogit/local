@@ -8,16 +8,15 @@
 NAME="CUPS Printserver"
 PROG=/usr/sbin/cupsd
 PID=/run/cups/cupsd.pid
-OPTS="-f"
 
 case $1 in
 	start)
 		msg "Starting $NAME..."
-		start_daemon -p $PIDFILE $PROG $OPTS
+		start_daemon -p $PID $PROG
 		;;
 	stop)
 		msg "Stopping $NAME..."
-		stop_daemon -p $PIDFILE $PROG
+		stop_daemon -p $PID $PROG
 		;;
 	restart)
 		$0 stop
