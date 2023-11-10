@@ -2,11 +2,10 @@
 # depends	: alsa-lib aom dav1d fdk-aac freetype2 gnutls lame libass libvorbis libva libvpx opus sdl2 x264 x265 yasm
 
 name=ffmpeg
-version=6.0
-release=4
+version=6.0.1
+release=1
 source="https://ffmpeg.org/releases/$name-$version.tar.xz
-	   ffmpeg-${version}-chromium_method-1.patch::https://linuxfromscratch.org/patches/downloads/ffmpeg/ffmpeg-6.0-chromium_method-1.patch
-	ffmpeg-${version}-binutils_2.41-1.patch::https://linuxfromscratch.org/patches/downloads/ffmpeg/ffmpeg-6.0-binutils_2.41-1.patch
+	   ffmpeg-${version}-chromium_method-1.patch::https://linuxfromscratch.org/patches/downloads/ffmpeg/ffmpeg-${version}-chromium_method-1.patch
 	ffmpeg-x264-10bit.sh"
 
 build() {
@@ -14,9 +13,6 @@ build() {
 
 	# Adds an API necessary for some packages to build
 	patch -Np1 -i $SRC/ffmpeg-${version}-chromium_method-1.patch
-
-	# Fix build with binutils-2.41
-	patch -Np1 -i $SRC/ffmpeg-${version}-binutils_2.41-1.patch
 
 	./configure --prefix=/usr \
 		--disable-debug \
