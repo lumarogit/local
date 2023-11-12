@@ -1,7 +1,7 @@
 # description  : Firmware files for AMDGPU Green Sardine
 
 name=linux-firmware-green
-version=20231030
+version=20231111
 release=1
 baseurl=https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/plain
 agpu=green_sardine_

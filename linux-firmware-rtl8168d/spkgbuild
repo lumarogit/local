@@ -1,7 +1,7 @@
 # description  : Firmware files for rtl8168d
 
 name=linux-firmware-rtl8168d
-version=20231030
+version=20231111
 release=1
 baseurl=https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/plain
 source="${baseurl}/rtl_nic/rtl8168d-2.fw"

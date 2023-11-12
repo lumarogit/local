@@ -1,7 +1,7 @@
 # description  : Firmware files for rtl8168h
 
 name=linux-firmware-rtl8168h
-version=20231030
+version=20231111
 release=1
 baseurl=https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/plain
 rtlk=rtl8168h-2
