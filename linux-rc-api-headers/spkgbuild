@@ -1,8 +1,8 @@
 # description	: Expose the kernel's API for use by Glibc
 
 name=linux-rc-api-headers
-version=6.6.0
-release=7
+version=6.7.0
+release=1
 source="https://git.kernel.org/torvalds/t/${name%%-*}-${version%.*}-rc$release.tar.gz"
 
 build() {
