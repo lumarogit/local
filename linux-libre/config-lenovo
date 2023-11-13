@@ -1,8 +1,8 @@
 #
 # Automatically generated file; DO NOT EDIT.
-# Linux/x86 6.6.0 Kernel Configuration
+# Linux/x86 6.6.1-gnu Kernel Configuration
 #
-CONFIG_CC_VERSION_TEXT="gcc (Venom Linux 13.20231021-1) 13.2.1 20231021"
+CONFIG_CC_VERSION_TEXT="gcc (Venom Linux 13.20231104-1) 13.2.1 20231104"
 CONFIG_CC_IS_GCC=y
 CONFIG_GCC_VERSION=130201
 CONFIG_CLANG_VERSION=0
@@ -3849,7 +3849,9 @@ CONFIG_FUSE_FS=m
 #
 # CD-ROM/DVD Filesystems
 #
-# CONFIG_ISO9660_FS is not set
+CONFIG_ISO9660_FS=m
+CONFIG_JOLIET=y
+# CONFIG_ZISOFS is not set
 # CONFIG_UDF_FS is not set
 # end of CD-ROM/DVD Filesystems
 
