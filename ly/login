@@ -3,6 +3,6 @@
 auth       required     pam_securetty.so
 auth       requisite    pam_nologin.so
 auth       include      system-auth
-account    include      system-account
-session    include      system-session
-password   include      system-password
+account    include      system-auth
+session    include      system-auth
+password   include      system-auth
