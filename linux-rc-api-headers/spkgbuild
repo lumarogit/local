@@ -2,7 +2,7 @@
 
 name=linux-rc-api-headers
 version=6.7.0
-release=2
+release=3
 source="https://git.kernel.org/torvalds/t/${name%%-*}-${version%.*}-rc$release.tar.gz"
 
 build() {
