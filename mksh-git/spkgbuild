@@ -2,8 +2,8 @@
 # homepage	: http://mirbsd.org/mksh.htm
 
 name=mksh-git
-version=20231211
-commit=2bbc8b4a4bc1c070d0a55a17e948750435fac73c
+version=20231213
+commit=8f30499885ccd83625d2f959ccd7eb4c4acb7bed
 release=1
 backup="etc/mkshrc"
 source="$name-$version.tar.gz::https://github.com/MirBSD/mksh/archive/$commit.tar.gz"
