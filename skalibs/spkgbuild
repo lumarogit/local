@@ -1,0 +1,15 @@
+# description	: A general-purpose utility library for secure, small C development
+# homepage	: https://www.skarnet.org/software/skalibs/
+# depends	: glibc
+
+name=skalibs
+version=2.14.1.0
+release=1
+source="https://www.skarnet.org/software/$name/$name-$version.tar.gz"
+
+build() {
+	cd $name-$version
+	./configure --prefix=/usr --enable-shared
+	make
+	make DESTDIR=$PKG install
+}

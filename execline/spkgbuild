@@ -1,0 +1,15 @@
+# description	: A small scripting language, to be used in place of a shell in non-interactive scripts
+# homepage	: https://skarnet.org/software/execline
+# depends	: skalibs
+
+name=execline
+version=2.9.4.0
+release=1
+source="https://skarnet.org/software/$name/$name-$version.tar.gz"
+
+build() {
+	cd $name-$version
+	./configure --prefix=/usr --enable-shared 
+	make
+	make DESTDIR=$PKG install
+}

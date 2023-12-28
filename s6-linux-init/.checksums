@@ -1,0 +1,5 @@
+082c0ca3c64b31be16eb2591b29afe83  rc.init
+972548ba650bb18ec3197e37f40c5ab8  rc.shutdown
+674bdd678e867d0edb8f441cfa5cdd86  rc.shutdown.final
+3d32b3fdbf7eabf797af5206815dc71f  runlevel
+872b2a839330c4f2893db8f15482fa77  s6-linux-init-1.1.2.0.tar.gz

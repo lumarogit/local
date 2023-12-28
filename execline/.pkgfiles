@@ -1,0 +1,65 @@
+execline-2.9.4.0-1
+drwxr-xr-x root/root    usr/
+drwxr-xr-x root/root    usr/bin/
+-rwxr-xr-x root/root    usr/bin/background
+-rwxr-xr-x root/root    usr/bin/backtick
+-rwxr-xr-x root/root    usr/bin/case
+lrwxrwxrwx root/root    usr/bin/cd -> execline-cd
+-rwxr-xr-x root/root    usr/bin/define
+-rwxr-xr-x root/root    usr/bin/dollarat
+-rwxr-xr-x root/root    usr/bin/elgetopt
+-rwxr-xr-x root/root    usr/bin/elgetpositionals
+-rwxr-xr-x root/root    usr/bin/elglob
+-rwxr-xr-x root/root    usr/bin/eltest
+-rwxr-xr-x root/root    usr/bin/emptyenv
+-rwxr-xr-x root/root    usr/bin/envfile
+-rwxr-xr-x root/root    usr/bin/exec
+-rwxr-xr-x root/root    usr/bin/execline-cd
+-rwxr-xr-x root/root    usr/bin/execline-umask
+-rwxr-xr-x root/root    usr/bin/execlineb
+-rwxr-xr-x root/root    usr/bin/exit
+-rwxr-xr-x root/root    usr/bin/export
+-rwxr-xr-x root/root    usr/bin/fdblock
+-rwxr-xr-x root/root    usr/bin/fdclose
+-rwxr-xr-x root/root    usr/bin/fdmove
+-rwxr-xr-x root/root    usr/bin/fdreserve
+-rwxr-xr-x root/root    usr/bin/fdswap
+-rwxr-xr-x root/root    usr/bin/forbacktickx
+-rwxr-xr-x root/root    usr/bin/foreground
+-rwxr-xr-x root/root    usr/bin/forstdin
+-rwxr-xr-x root/root    usr/bin/forx
+-rwxr-xr-x root/root    usr/bin/getcwd
+-rwxr-xr-x root/root    usr/bin/getpid
+-rwxr-xr-x root/root    usr/bin/heredoc
+-rwxr-xr-x root/root    usr/bin/homeof
+-rwxr-xr-x root/root    usr/bin/if
+-rwxr-xr-x root/root    usr/bin/ifelse
+-rwxr-xr-x root/root    usr/bin/ifte
+-rwxr-xr-x root/root    usr/bin/ifthenelse
+-rwxr-xr-x root/root    usr/bin/importas
+-rwxr-xr-x root/root    usr/bin/loopwhilex
+-rwxr-xr-x root/root    usr/bin/multidefine
+-rwxr-xr-x root/root    usr/bin/multisubstitute
+-rwxr-xr-x root/root    usr/bin/pipeline
+-rwxr-xr-x root/root    usr/bin/piperw
+-rwxr-xr-x root/root    usr/bin/posix-cd
+-rwxr-xr-x root/root    usr/bin/posix-umask
+-rwxr-xr-x root/root    usr/bin/redirfd
+-rwxr-xr-x root/root    usr/bin/runblock
+-rwxr-xr-x root/root    usr/bin/shift
+-rwxr-xr-x root/root    usr/bin/trap
+-rwxr-xr-x root/root    usr/bin/tryexec
+lrwxrwxrwx root/root    usr/bin/umask -> execline-umask
+-rwxr-xr-x root/root    usr/bin/unexport
+-rwxr-xr-x root/root    usr/bin/wait
+-rwxr-xr-x root/root    usr/bin/withstdinas
+drwxr-xr-x root/root    usr/include/
+drwxr-xr-x root/root    usr/include/execline/
+-rw-r--r-- root/root    usr/include/execline/config.h
+-rw-r--r-- root/root    usr/include/execline/execline.h
+drwxr-xr-x root/root    usr/lib/
+drwxr-xr-x root/root    usr/lib/execline/
+-rw-r--r-- root/root    usr/lib/execline/libexecline.a
+lrwxrwxrwx root/root    usr/lib/libexecline.so -> libexecline.so.2.9
+lrwxrwxrwx root/root    usr/lib/libexecline.so.2.9 -> libexecline.so.2.9.4.0
+-rwxr-xr-x root/root    usr/lib/libexecline.so.2.9.4.0

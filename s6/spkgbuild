@@ -1,0 +1,19 @@
+# description	: skarnet.org's small & secure supervision software suite. Comes with an ultra-fast init replacement, process management tools, an asynchronous locking library, and more.
+# homepage	: https://skarnet.org/software/s6/
+# depends	: skalibs execline 
+
+name=s6
+version=2.12.0.3
+release=1
+source="https://skarnet.org/software/$name/$name-$version.tar.gz"
+
+build() {
+	cd $name-$version
+	./configure --prefix=/usr \
+		--libdir=/usr/lib \
+		--libexecdir=/usr/lib \
+		--datadir=/etc \
+		--enable-shared
+	make
+	make DESTDIR=$PKG install
+}
