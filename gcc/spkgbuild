@@ -2,7 +2,7 @@
 # depends	: libmpc libmpfr libgmp zlib
 
 name=gcc
-version=13.20231223
+version=13.20231230
 release=1
 next=13.2.1
 source="$name-$version.tar.xz::https://gcc.gnu.org/pub/gcc/snapshots/LATEST-${version%.*}/$name-${version%.*}-${version#*.}.tar.xz
