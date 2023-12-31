@@ -9,7 +9,10 @@ source="https://www.skarnet.org/software/$name/$name-$version.tar.gz"
 
 build() {
 	cd $name-$version
-	./configure --prefix=/usr --enable-shared
+	./configure \
+		--prefix=/usr \
+		--datadir=/etc \
+		--disable-static
 	make
 	make DESTDIR=$PKG install
 }

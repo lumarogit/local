@@ -1,0 +1,28 @@
+# description	: A collection of s6 convenience scripts
+# homepage	: https://codeberg.org/lumaro/s6-scripts
+# depends	: s6-rc
+
+name=s6-scripts
+version=20240101
+release=1
+commit=84b6f9f48dfd0b8c6dc623dee2a6dfd7bc4588ce
+backup="etc/s6/rc.local
+	etc/s6/config/tty1.conf
+        etc/s6/config/tty2.conf
+        etc/s6/config/tty3.conf
+        etc/s6/config/tty4.conf
+        etc/s6/config/tty5.conf
+        etc/s6/config/tty6.conf
+        etc/s6/config/ttyS.conf
+        etc/s6/config/dmesg.conf
+        etc/s6/config/hwclock.conf
+        etc/s6/config/mount-cgroups.conf
+        etc/s6/config/mount-tmpfs.conf
+        etc/s6/config/udevd.conf
+        usr/lib/sysctl.d/50-default.conf"
+source="$name-$version.tar.gz::https://codeberg.org/lumaro/s6-scripts/archive/$commit.tar.gz"
+
+build() {
+	cd $name
+	DESTDIR=$PKG make install
+}

@@ -1,0 +1,9 @@
+s6-contrib-20240101-1
+drwxr-xr-x root/root    etc/
+drwxr-xr-x root/root    etc/s6/
+-rw-r--r-- root/root    etc/s6/s6-db-reload.conf.spkgnew
+drwxr-xr-x root/root    usr/
+drwxr-xr-x root/root    usr/bin/
+-rwxr-xr-x root/root    usr/bin/s6-db-reload
+-rwxr-xr-x root/root    usr/bin/s6-service
+-rwxr-xr-x root/root    usr/bin/s6-status

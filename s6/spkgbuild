@@ -5,15 +5,20 @@
 name=s6
 version=2.12.0.3
 release=1
-source="https://skarnet.org/software/$name/$name-$version.tar.gz"
+source="https://skarnet.org/software/$name/$name-$version.tar.gz
+	s6log.conf"
 
 build() {
 	cd $name-$version
-	./configure --prefix=/usr \
+	./configure \
+		--prefix=/usr \
 		--libdir=/usr/lib \
 		--libexecdir=/usr/lib \
 		--datadir=/etc \
-		--enable-shared
+		--enable-shared \
+		--disable-static
 	make
 	make DESTDIR=$PKG install
+
+	install -D -m644 $SRC/s6log.conf $PKG/usr/lib/sysusers.d/s6log.conf
 }

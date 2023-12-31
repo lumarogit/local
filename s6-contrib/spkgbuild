@@ -1,0 +1,15 @@
+# description	: A collection of s6 convenience scripts
+# homepage	: https://codeberg.org/lumaro/s6-contrib
+# depends	: s6-scripts
+
+name=s6-contrib
+version=20240101
+release=1
+commit=0028ee891e642cfbfafc2ce33b091942efaca433
+backup=" etc/s6/s6-db-reload.conf "
+source="$name-$version.tar.gz::https://codeberg.org/lumaro/s6-contrib/archive/$commit.tar.gz"
+
+build() {
+	make -C $name
+	make -C $name install DESTDIR=$PKG 
+}
