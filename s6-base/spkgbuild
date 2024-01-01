@@ -1,0 +1,24 @@
+# description	: A collection of s6 convenience scripts
+# homepage	: https://codeberg.org/lumaro/s6-scripts
+# depends	: s6-rc
+
+name=s6-base
+version=20240101
+release=1
+commit=a08ee9fb7f56d8b1070882f12101126ce166236e
+source="$name-$version.tar.gz::https://codeberg.org/lumaro/s6-base/archive/$commit.tar.gz"
+
+build() {
+	cd $name
+
+	mkdir -p "$PKG/usr"
+	cp -R contrib/etc "$PKG/"
+	cp -R contrib/bin "$PKG/usr"
+
+	mkdir -p "$PKG/etc/s6-rc/rc" "$PKG/usr/share/s6-sv"
+	cp -R srv/adminsv "$PKG/etc/s6-rc/"
+	cp -R conf "$PKG/etc/s6-rc/"
+	cp -R srv "$PKG/usr/share/s6-sv/"
+
+	ln -s "/usr/share/s6-sv" "$PKG/etc/s6-rc/sv"
+}
