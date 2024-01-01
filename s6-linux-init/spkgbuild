@@ -5,39 +5,42 @@
 name=s6-linux-init
 version=1.1.2.0
 release=1
-backup="etc/s6-linux-init/current/scripts/rc.init
-        etc/s6-linux-init/current/scripts/rc.shutdown
-        etc/s6-linux-init/current/scripts/rc.shutdown.final
-        etc/s6-linux-init/current/scripts/runlevel"
+backup="etc/s6/current/scripts/rc.init
+        etc/s6/current/scripts/rc.shutdown
+        etc/s6/current/scripts/rc.shutdown.final
+        etc/s6/current/scripts/runlevel"
 source="https://skarnet.org/software/$name/$name-$version.tar.gz
-	rc.init  rc.shutdown  rc.shutdown.final  runlevel"
-
+	rc.init
+	rc.shutdown
+	rc.shutdown.final
+	runlevel"
 
 build() {
 	cd $name-$version
 	./configure \
 		--prefix=/usr \
 		--libexecdir=/usr/lib \
-		--skeldir=/etc/s6-linux-init/skel \
+		--skeldir=/etc/s6/skel \
 		--enable-shared \
 		--disable-static
 	make
 	make DESTDIR=$PKG install
 
 	# install scripts
-	for i in rc.init runlevel rc.shutdown ; do
-		install -Dm755 $SRC/$i $PKG/etc/s6-linux-init/skel/$i
-	done
+	install -Dm755 $SRC/rc.init $PKG/etc/s6/skel/rc.init
+	install -Dm755 $SRC/rc.shutdown $PKG/etc/s6/skel/rc.shutdown
+	install -Dm755 $SRC/rc.shutdown.final $PKG/etc/s6/skel/rc.shutdown.final
+	install -Dm755 $SRC/runlevel $PKG/etc/s6/skel/runlevel
 
 	# exec s6-linux-init-maker
 	./s6-linux-init-maker -1 \
-		-f $PKG/etc/s6-linux-init/skel \
+		-f $PKG/etc/s6/skel \
 		-G "/sbin/agetty -L -8 tty12 115200" \
-		-c /etc/s6-linux-init/current $PKG/etc/s6-linux-init/current
+		-c /etc/s6/current $PKG/etc/s6/current
 
 	mkdir -p -m 0755 $PKG/sbin $PKG/etc/s6/rc
 
-	for i in init halt poweroff reboot shutdown telinit ; do
-		ln -sf /etc/s6-linux-init/current/bin/$i $PKG/sbin/$i
+	for b in init halt poweroff reboot shutdown telinit ; do
+		ln -sf /etc/s6/current/bin/$b $PKG/sbin/$b
 	done
 }
