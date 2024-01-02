@@ -4,7 +4,7 @@
 
 name=binutils
 version=2.41
-release=5
+release=6
 source="https://ftp.gnu.org/gnu/binutils/$name-$version.tar.xz"
 
 build() {
@@ -31,6 +31,7 @@ build() {
 		--enable-64-bit-bfd \
 		--enable-deterministic-archives \
 		--enable-install-libiberty \
+		--enable-default-hash-style=gnu \
 		--enable-targets=x86_64-pep \
 		--enable-gold \
 		--enable-ld=default \
