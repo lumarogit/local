@@ -2,7 +2,7 @@
 # depends	: alsa-lib aom dav1d fdk-aac freetype2 gnutls lame libass libvorbis libva libvpx opus sdl2 x264 x265 yasm
 
 name=ffmpeg
-version=6.1
+version=6.1.1
 release=1
 source="https://ffmpeg.org/releases/$name-$version.tar.xz
 	   ffmpeg-${version}-chromium_method-1.patch::https://linuxfromscratch.org/patches/downloads/ffmpeg/ffmpeg-${version}-chromium_method-1.patch
